@@ -52,7 +52,11 @@ CREATE TABLE CUSTOMER_TBL (
        ㄱ. 추가
            ALTER TABLE 자식테이블명 ADD CONSTRAINT 제약조건명 FOREIGN KEY(칼럼) REFERENCES 부모테이블명(참조할 칼럼)
        ㄴ. 삭제
-           ALTER TALBE 테이블명 DROP CONSTRAINT 제약조건명
+           ALTER TABLE 테이블명 DROP CONSTRAINT 제약조건명
+       ㄷ.일시중지
+           ALTER TABLE 테이블명 DISABLE CONSTRAINT 제약조건명
+       ㄹ.활성화
+           ALTER TABLE 테이블명 ENABLE CONSTRAINT 제약조건명
 */
 
 -- 실습
@@ -86,14 +90,4 @@ ALTER TABLE CUSTOMER_TBL MODIFY CUST_NAME VARCHAR2(30 BYTE) NULL; -- 반드시 NULL
 -- 테이블 구조 확인하기
 DESC BANK_TBL;
 DESC CUSTOMER_TBL;
-
-
-
-
-
-
-
-
-
-
 
