@@ -3,6 +3,8 @@
     1. Data Manipulation languege
     2. 데이터(행, Row)를 조작(삽입, 수정, 삭제)하는 언어이다.
     3. 트랜잭션 대상이다.(작업이 완료되면 COMMIT, 작업을 취소하려면 ROLLBACK이 필요하다.)
+      1) COMMIT   : 작업을 저장한다. COMMIT이 완료된 작업은 ROLLBACK으로 취소할 수 없다.
+      2) ROLLBACK : 작업을 취소한다. COMMIT '이후' 작업을 취소한다.
     4. 종류
       1) 삽입 : INSERT INTO VALUES
       2) 수정 : UPDATE SET WHERE
@@ -51,7 +53,6 @@ CREATE SEQUENCE DEPT_SEQ
 */
 -- 시퀀스도 삭제먼저
 DROP SEQUENCE DEPT_SEQ;
-
 -- 시퀀스 생성
 CREATE SEQUENCE DEPT_SEQ ORDER;
 
@@ -60,4 +61,17 @@ INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 
 INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '총무부', '대구');
 INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '기획부', '서울');
 
+COMMIT;
+
+-- 시퀀스 삭제먼저
+DROP SEQUENCE EMP_SEQ;
+-- 사원번호를 생성하는 시퀀스
+CREATE SEQUENCE EMP_SEQ 
+    START WITH 1001
+    ORDER;
+    
+INSERT INTO EMPLOYEE_T(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '구창민', 1, '과장', 'M', '95-05-01', 5000000); -- 날짜는 하이픈(-) 또는 슬래시(/)로 구분
+INSERT INTO EMPLOYEE_T(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '김민서', 1, '사원', 'M', '17-07-01', 2500000); -- 날짜는 하이픈(-) 또는 슬래시(/)로 구분
+INSERT INTO EMPLOYEE_T(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '이은영', 2, '부장', 'F', '90/09/01', 5500000); -- 날짜는 하이픈(-) 또는 슬래시(/)로 구분
+INSERT INTO EMPLOYEE_T(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '한성일', 2, '과장', 'M', '90/04/01', 5000000); -- 날짜는 하이픈(-) 또는 슬래시(/)로 구분
 COMMIT;
