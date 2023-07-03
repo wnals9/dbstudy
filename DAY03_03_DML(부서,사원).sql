@@ -1,3 +1,16 @@
+/*
+    DML
+    1. Data Manipulation languege
+    2. 데이터(행, Row)를 조작(삽입, 수정, 삭제)하는 언어이다.
+    3. 트랜잭션 대상이다.(작업이 완료되면 COMMIT, 작업을 취소하려면 ROLLBACK이 필요하다.)
+    4. 종류
+      1) 삽입 : INSERT INTO VALUES
+      2) 수정 : UPDATE SET WHERE
+      3) 삭제 : DELETE FROM WHERE
+*/
+
+-- 참고) 자격증에서는 DML의 범주(종류)를 INSERT, UPDATE, DELETE, SELECT로 보기도 한다.
+
 -- 삭제는 생성의 역순
 DROP TABLE EMPLOYEE_T;
 DROP TABLE DEPARTMENT_T;
@@ -47,3 +60,4 @@ INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 
 INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '총무부', '대구');
 INSERT INTO DEPARTMENT_T(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '기획부', '서울');
 
+COMMIT;
