@@ -12,7 +12,7 @@ SELECT DISTINCT DEPARTMENT_ID
 -- 3. 사원 테이블에서 EMPLOYEES_ID가 150인 사원의 정보 조회하기
 SELECT * 
   FROM EMPLOYEES
- WHERE EMPLOYEE_ID = '150';  -- 묵시적 타입변환 TO_NUMBER('150')이 맞지만 정확한 연산을 오라클이 스스로 타입을변환함
+ WHERE EMPLOYEE_ID = '150';  -- 묵시적 타입변환 TO_NUMBER('150')이 맞지만 정확한 연산을 위해 오라클이 스스로 타입을변환함
  
 SELECT *
   FROM EMPLOYEES
