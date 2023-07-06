@@ -35,7 +35,7 @@ SELECT MAX(HIRE_DATE) AS 최근고용일
 -- 1) NOT NULL이 확실한 칼럼(대표적으로 PK)으로 갯수를 구한다.
 SELECT COUNT(EMPLOYEE_ID) AS 전체사원수
   FROM EMPLOYEES;
--- 2) 모든 칼럼을 갯수를 구한다.
+-- 2) 모든 칼럼으로 갯수를 구한다.
 SELECT COUNT(*) AS 전체사원수
   FROM EMPLOYEES;
 
