@@ -39,3 +39,17 @@ SELECT EMPLOYEE_ID
         , 50, 'Shipping'
         , 60, 'IT') AS DEPARTMENT_NAME
   FROM EMPLOYEES;
+
+-- 5. 분기 처리 표현식
+SELECT EMPLOYEE_ID
+     , DEPARTMENT_ID
+     , CASE
+         WHEN DEPARTMENT_ID = 10 THEN 'Administration'
+         WHEN DEPARTMENT_ID = 20 THEN 'Marketing'
+         WHEN DEPARTMENT_ID = 30 THEN 'Purchasing'
+         WHEN DEPARTMENT_ID = 40 THEN 'Human Resources'
+         WHEN DEPARTMENT_ID = 50 THEN 'Shipping'
+         WHEN DEPARTMENT_ID = 60 THEN 'IT'
+         ELSE 'Unknown'
+       END AS DEPARTMENT_NAME
+  FROM EMPLOYEES;
