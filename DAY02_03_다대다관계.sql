@@ -1,18 +1,18 @@
 /*
-    M:N °ü°è
-    1. Çö½Ç¼¼°è¿¡¼­ ºó¹øÈ÷ ³ªÅ¸³ªÁö¸¸ ÁÖÀÇÇØ¾ß ÇÏ´Â °ü°è
-    2. M:N °ü°è¸¦ °¡Áø 2°³ÀÇ Å×ÀÌºíÀº Á÷Á¢ °ü°è¸¦ ¸Î´Â °ÍÀÌ ºÒ°¡´ÉÇÏ´Ù.
-    3. °ü°è¸¦ ¸Î±â À§ÇØ¼­ º°µµÀÇ Å×ÀÌºíÀÌ Ãß°¡·Î ÇÊ¿äÇÏ´Ù.
-    4. M:N °ü°è´Â 1:M °ü°è 2°³·Î ±¸ÇöÇÒ ¼ö ÀÖ´Ù.
+    M:N ê´€ê³„
+    1. í˜„ì‹¤ì„¸ê³„ì—ì„œ ë¹ˆë²ˆížˆ ë‚˜íƒ€ë‚˜ì§€ë§Œ ì£¼ì˜í•´ì•¼ í•˜ëŠ” ê´€ê³„
+    2. M:N ê´€ê³„ë¥¼ ê°€ì§„ 2ê°œì˜ í…Œì´ë¸”ì€ ì§ì ‘ ê´€ê³„ë¥¼ ë§ºëŠ” ê²ƒì´ ë¶ˆê°€ëŠ¥í•˜ë‹¤.
+    3. ê´€ê³„ë¥¼ ë§ºê¸° ìœ„í•´ì„œ ë³„ë„ì˜ í…Œì´ë¸”ì´ ì¶”ê°€ë¡œ í•„ìš”í•˜ë‹¤.
+    4. M:N ê´€ê³„ëŠ” 1:M ê´€ê³„ 2ê°œë¡œ êµ¬í˜„í•  ìˆ˜ ìžˆë‹¤.
 */
 
--- »èÁ¦´Â »ý¼ºÀÇ ¿ª¼øÀ¸·Î ÁøÇà
+-- ì‚­ì œëŠ” ìƒì„±ì˜ ì—­ìˆœìœ¼ë¡œ ì§„í–‰
 DROP TABLE ENROLL_T;
 DROP TABLE SUBJECT_T;
 DROP TABLE UNIV_STUDENT_T;
 
 
--- ÇÐ»ý Å×ÀÌºí
+-- í•™ìƒ í…Œì´ë¸”
 CREATE TABLE UNIV_STUDENT_T (
     STU_NO   NUMBER            NOT NULL
    ,STU_NAME VARCHAR2(10 BYTE) NOT NULL
@@ -20,7 +20,7 @@ CREATE TABLE UNIV_STUDENT_T (
    ,CONSTRAINT PK_UNIV_STU PRIMARY KEY(STU_NO)
 );
 
--- °ú¸ñ Å×ÀÌºí
+-- ê³¼ëª© í…Œì´ë¸”
 CREATE TABLE SUBJECT_T (
     SBJ_CODE  VARCHAR2(5 BYTE)  NOT NULL
    ,SBJ_NAME  VARCHAR2(10 BYTE) NOT NULL
@@ -28,7 +28,7 @@ CREATE TABLE SUBJECT_T (
    ,CONSTRAINT PK_SBJ PRIMARY KEY(SBJ_CODE)
 );
 
--- ¼ö°­½ÅÃ» Å×ÀÌºí
+-- ìˆ˜ê°•ì‹ ì²­ í…Œì´ë¸”
 CREATE TABLE ENROLL_T (
     EN_NO    NUMBER           NOT NULL
    ,STU_NO   NUMBER           
@@ -39,5 +39,4 @@ CREATE TABLE ENROLL_T (
 );
 
 
---ÇÐ»ý Å×ÀÌºí<-> °ú¸ñ Å×ÀÌºíÀº ¼­·Î ¿¬°üÀÌ¾øÀ¸¹Ç·Î ÀÓÀÇ ¼ø¼­·Î ¸¸µé¾îµµµÊ
-
+--í•™ìƒ í…Œì´ë¸”<-> ê³¼ëª© í…Œì´ë¸”ì€ ì„œë¡œ ì—°ê´€ì´ì—†ìœ¼ë¯€ë¡œ ìž„ì˜ ìˆœì„œë¡œ ë§Œë“¤ì–´ë„ë¨

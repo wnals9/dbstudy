@@ -1,43 +1,43 @@
--- евюл╨М ╩Ха╕╢б ╩Щ╪╨юг ©╙╪Ь!
+-- М┘▄Л²╢К╦■ Л┌╜Л═°К┼■ Л┐²Л└╠Л²≤ Л≈╜Л┬°!
 DROP TABLE ENROLL_TBL;
 DROP TABLE LECTURE_TBL;
 DROP TABLE STUDENT_TBL;
 DROP TABLE COURSE_TBL;
 DROP TABLE PROFESSOR_TBL;
 
--- евюл╨М ╩Щ╪╨
--- 1. PROFESSOR_TBL евюл╨М
+-- М┘▄Л²╢К╦■ Л┐²Л└╠
+-- 1. PROFESSOR_TBL М┘▄Л²╢К╦■
 CREATE TABLE PROFESSOR_TBL (
-    P_NO    VARCHAR2(5 BYTE)  NOT NULL  -- ╠Б╨╩е╟
+    P_NO    VARCHAR2(5 BYTE)  NOT NULL  -- Й╦╟КЁ╦М┌╓
   , P_NAME  VARCHAR2(30 BYTE) NULL
   , P_MAJOR VARCHAR2(30 BYTE) NULL
   , CONSTRAINT PK_PROF PRIMARY KEY(P_NO)
 );
 
--- 2. COURSE_TBL евюл╨М
+-- 2. COURSE_TBL М┘▄Л²╢К╦■
 CREATE TABLE COURSE_TBL (
-    C_NO   VARCHAR2(5 BYTE)  NOT NULL  -- ╠Б╨╩е╟
+    C_NO   VARCHAR2(5 BYTE)  NOT NULL  -- Й╦╟КЁ╦М┌╓
   , C_NAME VARCHAR2(30 BYTE) NULL
   , C_UNIT NUMBER(1)         NULL
   , CONSTRAINT PK_COURSE PRIMARY KEY(C_NO)
 );
 
--- 3. STUDENT_TBL евюл╨М
+-- 3. STUDENT_TBL М┘▄Л²╢К╦■
 CREATE TABLE STUDENT_TBL (
-    S_NO       VARCHAR2(5 BYTE)   NOT NULL  -- ╠Б╨╩е╟
+    S_NO       VARCHAR2(5 BYTE)   NOT NULL  -- Й╦╟КЁ╦М┌╓
   , S_NAME     VARCHAR2(100 BYTE) NULL
   , S_ADDRESS  VARCHAR2(100 BYTE) NULL
   , S_GRADE_NO NUMBER(1)          NULL
-  , P_NO       VARCHAR2(5 BYTE)   NOT NULL  -- PROFESSOR_TBL евюл╨Мюг P_NO д╝╥Ёю╩ бЭа╤го╢б ©э╥║е╟
+  , P_NO       VARCHAR2(5 BYTE)   NOT NULL  -- PROFESSOR_TBL М┘▄Л²╢К╦■Л²≤ P_NO Л╧╪К÷╪Л²└ Л╟╦Л║╟М∙≤К┼■ Л≥╦К·≤М┌╓
   , CONSTRAINT PK_STUDENT PRIMARY KEY(S_NO)
   , CONSTRAINT FK_PROF_STUDENT FOREIGN KEY(P_NO) REFERENCES PROFESSOR_TBL(P_NO) ON DELETE CASCADE
 );
 
--- 4. LECTURE_TBL евюл╨М
+-- 4. LECTURE_TBL М┘▄Л²╢К╦■
 CREATE TABLE LECTURE_TBL (
     L_NO       NUMBER             NOT NULL
-  , P_NO       VARCHAR2(5 BYTE)   NULL  -- PROFESSOR_TBL евюл╨Мюг P_NO д╝╥Ёю╩ бЭа╤го╢б ©э╥║е╟
-  , C_NO       VARCHAR2(5 BYTE)   NULL  -- COURSE_TBL евюл╨Мюг C_NO д╝╥Ёю╩ бЭа╤го╢б ©э╥║е╟
+  , P_NO       VARCHAR2(5 BYTE)   NULL  -- PROFESSOR_TBL М┘▄Л²╢К╦■Л²≤ P_NO Л╧╪К÷╪Л²└ Л╟╦Л║╟М∙≤К┼■ Л≥╦К·≤М┌╓
+  , C_NO       VARCHAR2(5 BYTE)   NULL  -- COURSE_TBL М┘▄Л²╢К╦■Л²≤ C_NO Л╧╪К÷╪Л²└ Л╟╦Л║╟М∙≤К┼■ Л≥╦К·≤М┌╓
   , L_NAME     VARCHAR2(100 BYTE) NULL
   , L_LOCATION VARCHAR2(100 BYTE) NULL
   , CONSTRAINT PK_LEC PRIMARY KEY(L_NO)
@@ -45,11 +45,11 @@ CREATE TABLE LECTURE_TBL (
   , CONSTRAINT FK_COURCE_LEC FOREIGN KEY(C_NO) REFERENCES COURSE_TBL(C_NO)    ON DELETE SET NULL
 );
 
--- 5. ENROLL_TBL евюл╨М
+-- 5. ENROLL_TBL М┘▄Л²╢К╦■
 CREATE TABLE ENROLL_TBL (
-    E_NO   NUMBER           NOT NULL  -- ╠Б╨╩е╟
-  , S_NO   VARCHAR2(5 BYTE) NOT NULL  -- STUDENT_TBL евюл╨Мюг S_NO д╝╥Ёю╩ бЭа╤го╢б ©э╥║е╟
-  , L_NO   NUMBER           NOT NULL  -- LECTURE_TBL евюл╨Мюг L_NO д╝╥Ёю╩ бЭа╤го╢б ©э╥║е╟
+    E_NO   NUMBER           NOT NULL  -- Й╦╟КЁ╦М┌╓
+  , S_NO   VARCHAR2(5 BYTE) NOT NULL  -- STUDENT_TBL М┘▄Л²╢К╦■Л²≤ S_NO Л╧╪К÷╪Л²└ Л╟╦Л║╟М∙≤К┼■ Л≥╦К·≤М┌╓
+  , L_NO   NUMBER           NOT NULL  -- LECTURE_TBL М┘▄Л²╢К╦■Л²≤ L_NO Л╧╪К÷╪Л²└ Л╟╦Л║╟М∙≤К┼■ Л≥╦К·≤М┌╓
   , E_DATE DATE   NULL
   , CONSTRAINT PK_ENROLL PRIMARY KEY(E_NO)
   , CONSTRAINT FK_STUDENT_ENROLL FOREIGN KEY(S_NO) REFERENCES STUDENT_TBL(S_NO) ON DELETE CASCADE
@@ -57,39 +57,39 @@ CREATE TABLE ENROLL_TBL (
 );
 
 
--- ╣╔юлем ╩Пют
+-- К█╟Л²╢М└╟ Л┌╫Л·┘
 
--- 1. PROFESSOR_TBL евюл╨М ╣╔юлем ют╥б
-INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0001', 'а╕юс╫╨', 'ддг╩ем');
-INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0002', '╬ы╦╝╫╨', 'ддг╩ем');
-INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0003', '╫╨╧л╫╨', 'ддг╩ем');
+-- 1. PROFESSOR_TBL М┘▄Л²╢К╦■ К█╟Л²╢М└╟ Л·┘К═╔
+INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0001', 'Л═°Л·└Л┼╓', 'Л╩╢М⌠╗М└╟');
+INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0002', 'Л∙╗К╕╛Л┼╓', 'Л╩╢М⌠╗М└╟');
+INSERT INTO PROFESSOR_TBL(P_NO, P_NAME, P_MAJOR) VALUES ('P0003', 'Л┼╓К╞╦Л┼╓', 'Л╩╢М⌠╗М└╟');
 
--- 2. COURSE_TBL евюл╨М ╣╔юлем ют╥б
-INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE001', 'юз╧ы', 3);
-INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE002', '╣╔юлем╨ёюл╫╨', 3);
-INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE003', '╪╜╧Жга╥н╠в╥╔', 3);
+-- 2. COURSE_TBL М┘▄Л²╢К╦■ К█╟Л²╢М└╟ Л·┘К═╔
+INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE001', 'Л·░К╟■', 3);
+INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE002', 'К█╟Л²╢М└╟К╡═Л²╢Л┼╓', 3);
+INSERT INTO COURSE_TBL(C_NO, C_NAME, C_UNIT) VALUES ('CE003', 'Л└°К╡└М■└К║°Й╥╦К·╗', 3);
 
--- 3. STUDENT_TBL евюл╨М ╣╔юлем ют╥б
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('21001', '╟М╠Ф╣©', '╪╜©О', 3, 'P0001');
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('21002', 'цж╧╚╧Х', '╟Ф╠Б', 3, 'P0002');
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('22001', '╟╜©Л╦╡', 'юнц╣', 2, 'P0003');
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('22002', 'аЖ╪Ж╬ф', 'а╕аж', 2, 'P0001');
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('23001', '╠Х©╧╦╡', '╢К╠╦', 1, 'P0002');
-INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('23002', 'Ё╙ебаЬ', '╠╓аж', 1, 'P0003');
+-- 3. STUDENT_TBL М┘▄Л²╢К╦■ К█╟Л²╢М└╟ Л·┘К═╔
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('21001', 'ЙЁ═Й╦╦К▐≥', 'Л└°Л ╦', 3, 'P0001');
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('21002', 'Л╣°К╛╢К╟╟', 'Й╡╫Й╦╟', 3, 'P0002');
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('22001', 'Й╟∙Л ╟К╕╪', 'Л²╦Л╡°', 2, 'P0003');
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('22002', 'Л╖─Л┬≤Л∙└', 'Л═°Лё╪', 2, 'P0001');
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('23001', 'Й╧─Л≤┬К╕╪', 'К▄─Й╣╛', 1, 'P0002');
+INSERT INTO STUDENT_TBL(S_NO, S_NAME, S_ADDRESS, S_GRADE_NO, P_NO) VALUES ('23002', 'К┌≤М┐°Л╖└', 'Й╢▒Лё╪', 1, 'P0003');
 
--- 4. ╟╜юг╧Ьхё ╫цдЖ╫╨ + LECTURE_TBL евюл╨М ╣╔юлем ют╥б
+-- 4. Й╟∙Л²≤К╡┬М≤╦ Л▀°М──Л┼╓ + LECTURE_TBL М┘▄Л²╢К╦■ К█╟Л²╢М└╟ Л·┘К═╔
 DROP SEQUENCE LEC_SEQ;
 CREATE SEQUENCE LEC_SEQ ORDER;
-INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0001', 'CE001', 'юз╧ы©оюЭа╓╨╧', '101хё');
-INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0002', 'CE002', '╟Э╟ХгЭ╣╔юлем╨ёюл╫╨юл╥п', '102хё');
-INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0003', 'CE003', '╫╨га╦╣га╥╧юс©Же╘╟Ё©Д', '103хё');
+INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0001', 'CE001', 'Л·░К╟■Л≥└Л═└Л═∙КЁ╣', '101М≤╦');
+INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0002', 'CE002', 'Й╢─ЙЁ└М≤∙К█╟Л²╢М└╟К╡═Л²╢Л┼╓Л²╢К║═', '102М≤╦');
+INSERT INTO LECTURE_TBL(L_NO, P_NO, C_NO, L_NAME, L_LOCATION) VALUES (LEC_SEQ.NEXTVAL, 'P0003', 'CE003', 'Л┼╓М■└К╖│М■└К═┬Л·└Л⌡▄М│╛Й╟°Л ■', '103М≤╦');
 
--- 5. ╪Ж╟╜╫ец╩╧Ьхё ╫цдЖ╫╨ + ENROLL_TBL евюл╨М ╣╔юлем ют╥б
+-- 5. Л┬≤Й╟∙Л▀═Л╡╜К╡┬М≤╦ Л▀°М──Л┼╓ + ENROLL_TBL М┘▄Л²╢К╦■ К█╟Л²╢М└╟ Л·┘К═╔
 DROP SEQUENCE ENROLL_SEQ;
 CREATE SEQUENCE ENROLL_SEQ ORDER;
 INSERT INTO ENROLL_TBL(E_NO, S_NO, L_NO, E_DATE) VALUES (ENROLL_SEQ.NEXTVAL, '21001', 1, '23-02-25');
 INSERT INTO ENROLL_TBL(E_NO, S_NO, L_NO, E_DATE) VALUES (ENROLL_SEQ.NEXTVAL, '21001', 2, '23-02-25');
 INSERT INTO ENROLL_TBL(E_NO, S_NO, L_NO, E_DATE) VALUES (ENROLL_SEQ.NEXTVAL, '21001', 3, '23-02-25');
 
--- 6. ╨╞╟Ф╣х Ё╩©Кю╩ DB©║ ╧щ©╣
+-- 6. КЁ─Й╡╫К░° К┌╢Л ╘Л²└ DBЛ≈░ К╟≤Л≤│
 COMMIT;

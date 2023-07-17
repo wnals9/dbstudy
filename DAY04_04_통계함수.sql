@@ -1,44 +1,44 @@
 /*
-    Åë°è ÇÔ¼ö
-    1. SUM(Ç¥Çö½Ä)   : ÇÕ°è
-    2. AVG(Ç¥Çö½Ä)   : Æò±Õ
-    3. MAX(Ç¥Çö½Ä)   : ÃÖ´ë°ª
-    4. MIN(Ç¥Çö½Ä)   : ÃÖ¼Ò°ª
-    5. COUNT(Ç¥Çö½Ä) : µ¥ÀÌÅÍ °¹¼ö
+    í†µê³„ í•¨ìˆ˜
+    1. SUM(í‘œí˜„ì‹)   : í•©ê³„
+    2. AVG(í‘œí˜„ì‹)   : í‰ê· 
+    3. MAX(í‘œí˜„ì‹)   : ìµœëŒ€ê°’
+    4. MIN(í‘œí˜„ì‹)   : ìµœì†Œê°’
+    5. COUNT(í‘œí˜„ì‹) : ë°ì´í„° ê°¯ìˆ˜
     
-    --¸ðµç ÇÔ¼ö¿¡¼­ NULL°ªÀº Á¦¿ÜµÈ´Ù.
+    --ëª¨ë“  í•¨ìˆ˜ì—ì„œ NULLê°’ì€ ì œì™¸ëœë‹¤.
 */
--- 1. »ç¿ø Å×ÀÌºí¿¡¼­ ¿¬ºÀ ÇÕ°è Á¶È¸ÇÏ±â
-SELECT SUM(SALARY) AS ¿¬ºÀÇÕ°è
+-- 1. ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì—°ë´‰ í•©ê³„ ì¡°íšŒí•˜ê¸°
+SELECT SUM(SALARY) AS ì—°ë´‰í•©ê³„
   FROM EMPLOYEES;
   
--- 2. »ç¿ø Å×ÀÌºí¿¡¼­ ÀüÃ¼ »ç¿øÀÇ Ä¿¹Ì¼ÇÆÛ¼¾Æ®ÀÇ Æò±Õ Á¶È¸ÇÏ±â
--- Ä¿¹Ì¼ÇÀº ¾ø´Â »ç¿øÀº Á¦¿ÜÇÏ°í Á¶È¸ÇÏ±â
-SELECT AVG(COMMISSION_PCT) AS Ä¿¹Ì¼ÇÆÛ¼¾Æ®Æò±Õ
+-- 2. ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì „ì²´ ì‚¬ì›ì˜ ì»¤ë¯¸ì…˜í¼ì„¼íŠ¸ì˜ í‰ê·  ì¡°íšŒí•˜ê¸°
+-- ì»¤ë¯¸ì…˜ì€ ì—†ëŠ” ì‚¬ì›ì€ ì œì™¸í•˜ê³  ì¡°íšŒí•˜ê¸°
+SELECT AVG(COMMISSION_PCT) AS ì»¤ë¯¸ì…˜í¼ì„¼íŠ¸í‰ê· 
   FROM EMPLOYEES
- WHERE COMMISSION_PCT IS NOT NULL; -- Ä¿¹Ì¼ÇÀÌ ¾ø´Â »ç¿øÀº Á¦¿ÜÇÏ´Â Á¶°Ç½ÄÀÌÁö¸¸ »ç½Ç ÇÊ¿äÇÏÁö ¾Ê´Ù. AVGÇÔ¼ö´Â ÀÚÃ¼ÀûÀ¸·Î NULLÀ» Á¦¿ÜÇÏ±â¶§¹®.
+ WHERE COMMISSION_PCT IS NOT NULL; -- ì»¤ë¯¸ì…˜ì´ ì—†ëŠ” ì‚¬ì›ì€ ì œì™¸í•˜ëŠ” ì¡°ê±´ì‹ì´ì§€ë§Œ ì‚¬ì‹¤ í•„ìš”í•˜ì§€ ì•Šë‹¤. AVGí•¨ìˆ˜ëŠ” ìžì²´ì ìœ¼ë¡œ NULLì„ ì œì™¸í•˜ê¸°ë•Œë¬¸.
  
--- 3. »ç¿ø Å×ÀÌºí¿¡¼­ ÀüÃ¼ »ç¿ø Áß ÃÖ´ë ¿¬ºÀÀ» Á¶È¸ÇÏ±â
-SELECT MAX(SALARY) AS ÃÖ´ë¿¬ºÀ
+-- 3. ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì „ì²´ ì‚¬ì› ì¤‘ ìµœëŒ€ ì—°ë´‰ì„ ì¡°íšŒí•˜ê¸°
+SELECT MAX(SALARY) AS ìµœëŒ€ì—°ë´‰
   FROM EMPLOYEES;
   
--- 4. »ç¿ø Å×ÀÌºí¿¡¼­ ÀüÃ¼ »ç¿øÀÇ ÃÖ´ë Ä¿¹Ì¼Ç Á¶È¸ÇÏ±â
--- Ä¿¹Ì¼Ç = ¿¬ºÀ * Ä¿¹Ì¼ÇÆÛ¼¾Æ®
-SELECT MAX(SALARY * COMMISSION_PCT) AS ÃÖ´ëÄ¿¹Ì¼Ç
+-- 4. ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì „ì²´ ì‚¬ì›ì˜ ìµœëŒ€ ì»¤ë¯¸ì…˜ ì¡°íšŒí•˜ê¸°
+-- ì»¤ë¯¸ì…˜ = ì—°ë´‰ * ì»¤ë¯¸ì…˜í¼ì„¼íŠ¸
+SELECT MAX(SALARY * COMMISSION_PCT) AS ìµœëŒ€ì»¤ë¯¸ì…˜
   FROM EMPLOYEES;
 
--- 5. »ç¿ø Å×ÀÌºí¿¡¼­ ÀüÃ¼ »ç¿ø Áß °¡Àå ³ªÁß¿¡ ÀÔ»çÇÑ »ç¿øÀÇ ÀÔ»çÀÏ Á¶È¸ÇÏ±â
-SELECT MAX(HIRE_DATE) AS ÃÖ±Ù°í¿ëÀÏ
+-- 5. ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì „ì²´ ì‚¬ì› ì¤‘ ê°€ìž¥ ë‚˜ì¤‘ì— ìž…ì‚¬í•œ ì‚¬ì›ì˜ ìž…ì‚¬ì¼ ì¡°íšŒí•˜ê¸°
+SELECT MAX(HIRE_DATE) AS ìµœê·¼ê³ ìš©ì¼
   FROM EMPLOYEES;
   
--- 6. ÀüÃ¼ »ç¿ø ¼ö Á¶È¸ÇÏ±â
--- 1) NOT NULLÀÌ È®½ÇÇÑ Ä®·³(´ëÇ¥ÀûÀ¸·Î PK)À¸·Î °¹¼ö¸¦ ±¸ÇÑ´Ù.
-SELECT COUNT(EMPLOYEE_ID) AS ÀüÃ¼»ç¿ø¼ö
+-- 6. ì „ì²´ ì‚¬ì› ìˆ˜ ì¡°íšŒí•˜ê¸°
+-- 1) NOT NULLì´ í™•ì‹¤í•œ ì¹¼ëŸ¼(ëŒ€í‘œì ìœ¼ë¡œ PK)ìœ¼ë¡œ ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
+SELECT COUNT(EMPLOYEE_ID) AS ì „ì²´ì‚¬ì›ìˆ˜
   FROM EMPLOYEES;
--- 2) ¸ðµç Ä®·³À¸·Î °¹¼ö¸¦ ±¸ÇÑ´Ù.
-SELECT COUNT(*) AS ÀüÃ¼»ç¿ø¼ö
+-- 2) ëª¨ë“  ì¹¼ëŸ¼ìœ¼ë¡œ ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
+SELECT COUNT(*) AS ì „ì²´ì‚¬ì›ìˆ˜
   FROM EMPLOYEES;
 
--- 7. »ç¿øµéÀÌ ±Ù¹«ÇÏ´Â ºÎ¼­ÀÇ °¹¼ö Á¶È¸ÇÏ±â
-SELECT COUNT(DISTINCT DEPARTMENT_ID) AS ºÎ¼­¼ö
+-- 7. ì‚¬ì›ë“¤ì´ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œì˜ ê°¯ìˆ˜ ì¡°íšŒí•˜ê¸°
+SELECT COUNT(DISTINCT DEPARTMENT_ID) AS ë¶€ì„œìˆ˜
   FROM EMPLOYEES;

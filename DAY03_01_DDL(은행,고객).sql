@@ -1,28 +1,28 @@
 /*
     DDL
     1. Date Definition Language
-    2. µ¥ÀÌÅÍº£ÀÌ½º °´Ã¼¸¦ ´Ù·ç´Â ¾ð¾î
-    3. Æ®·£Àè¼Ç ´ë»óÀÌ ¾Æ´Ï´Ù.(ÀÛ¾÷À» Ãë¼ÒÇÒ ¼ö ¾ø´Ù.)
-      *Æ®·£Àè¼Ç : ¹Ýµå½Ã ÇÑ¹ø¿¡ ½ÇÇà(¼º°ø)µÇ¾î¾ß ÇÏ´Â ÀÛ¾÷ (ex.ÀºÇà ÀÌÃ¼ Ãâ±Ý+ÀÔ±Ý)
-    4.Á¾·ù
-      1) CREATE   : »ý¼º
-      2) ALTER    : ¼öÁ¤
-      3) DROP     : »èÁ¦
-      4) TRUNCATE : »èÁ¦(³»¿ë¸¸ »èÁ¦)
+    2. ë°ì´í„°ë² ì´ìŠ¤ ê°ì²´ë¥¼ ë‹¤ë£¨ëŠ” ì–¸ì–´
+    3. íŠ¸ëžœìž­ì…˜ ëŒ€ìƒì´ ì•„ë‹ˆë‹¤.(ìž‘ì—…ì„ ì·¨ì†Œí•  ìˆ˜ ì—†ë‹¤.)
+      *íŠ¸ëžœìž­ì…˜ : ë°˜ë“œì‹œ í•œë²ˆì— ì‹¤í–‰(ì„±ê³µ)ë˜ì–´ì•¼ í•˜ëŠ” ìž‘ì—… (ex.ì€í–‰ ì´ì²´ ì¶œê¸ˆ+ìž…ê¸ˆ)
+    4.ì¢…ë¥˜
+      1) CREATE   : ìƒì„±
+      2) ALTER    : ìˆ˜ì •
+      3) DROP     : ì‚­ì œ
+      4) TRUNCATE : ì‚­ì œ(ë‚´ìš©ë§Œ ì‚­ì œ)
 */
 
--- Å×ÀÌºí »èÁ¦´Â »ý¼ºÀÇ ¿ª¼ø
+-- í…Œì´ë¸” ì‚­ì œëŠ” ìƒì„±ì˜ ì—­ìˆœ
 DROP TABLE CUSTOMER_TBL;
 DROP TABLE BANK_TBL;
 
--- BANK Å×ÀÌºí
+-- BANK í…Œì´ë¸”
 CREATE TABLE BANK_TBL (
     BANK_CODE VARCHAR2(20 BYTE) NOT NULL
    ,BANK_NAME VARCHAR2(30 BYTE)
    ,CONSTRAINT PK_BANK PRIMARY KEY(BANK_CODE)
 );
 
--- CUSTOMER Å×ÀÌºí
+-- CUSTOMER í…Œì´ë¸”
 CREATE TABLE CUSTOMER_TBL (
     NO        NUMBER            NOT NULL
    ,NAME      VARCHAR2(30 BYTE) NOT NULL
@@ -35,59 +35,58 @@ CREATE TABLE CUSTOMER_TBL (
 
 
 /*
-    Å×ÀÌºí ¼öÁ¤ÇÏ±â
-    1. Ä®·³ Ãß°¡   : ALTER TABLE Å×ÀÌºí¸í ADD Ä®·³¸í µ¥ÀÌÅÍÅ¸ÀÔ [Á¦¾àÁ¶°Ç]
-    2. Ä®·³ ¼öÁ¤   : ALTER TABLE Å×ÀÌºí¸í MODIFY Ä®·³¸í µ¥ÀÌÅÍÅ¸ÀÔ [Á¦¾àÁ¶°Ç]
-    3. Ä®·³ »èÁ¦   : ALTER TABLE Å×ÀÌºí¸í DROP COLUMN Ä®·³¸í
-    4. Ä®·³ ÀÌ¸§   : ALTER TABLE Å×ÀÌºí¸í RENAME COLUMN ±âÁ¸Ä®·³¸í TO ½Å±ÔÄ®·³
-    5. Å×ÀÌºí ÀÌ¸§ : ALTER TABLE Å×ÀÌºí¸í RENAME TO ½Å±ÔÅ×ÀÌºí¸í
-    6. PK/FK Á¦¾àÁ¶°Ç
+    í…Œì´ë¸” ìˆ˜ì •í•˜ê¸°
+    1. ì¹¼ëŸ¼ ì¶”ê°€   : ALTER TABLE í…Œì´ë¸”ëª… ADD ì¹¼ëŸ¼ëª… ë°ì´í„°íƒ€ìž… [ì œì•½ì¡°ê±´]
+    2. ì¹¼ëŸ¼ ìˆ˜ì •   : ALTER TABLE í…Œì´ë¸”ëª… MODIFY ì¹¼ëŸ¼ëª… ë°ì´í„°íƒ€ìž… [ì œì•½ì¡°ê±´]
+    3. ì¹¼ëŸ¼ ì‚­ì œ   : ALTER TABLE í…Œì´ë¸”ëª… DROP COLUMN ì¹¼ëŸ¼ëª…
+    4. ì¹¼ëŸ¼ ì´ë¦„   : ALTER TABLE í…Œì´ë¸”ëª… RENAME COLUMN ê¸°ì¡´ì¹¼ëŸ¼ëª… TO ì‹ ê·œì¹¼ëŸ¼
+    5. í…Œì´ë¸” ì´ë¦„ : ALTER TABLE í…Œì´ë¸”ëª… RENAME TO ì‹ ê·œí…Œì´ë¸”ëª…
+    6. PK/FK ì œì•½ì¡°ê±´
       1) PK
-       ¤¡. Ãß°¡
-           ALTER TABLE Å×ÀÌºí¸í ADD CONTRAINT Á¦¾àÁ¶°Ç¸í PRIMARY KEY(Ä®·³)
-       ¤¤. »èÁ¦
-           ALTER TBALE Å×ÀÌºí¸í DROP CONSTRAINT Á¦¾àÁ¶°Ç¸í
-           ALTER TABLE Å×ÀÌºí¸í DROP PRIMARY KEY
+       ã„±. ì¶”ê°€
+           ALTER TABLE í…Œì´ë¸”ëª… ADD CONTRAINT ì œì•½ì¡°ê±´ëª… PRIMARY KEY(ì¹¼ëŸ¼)
+       ã„´. ì‚­ì œ
+           ALTER TBALE í…Œì´ë¸”ëª… DROP CONSTRAINT ì œì•½ì¡°ê±´ëª…
+           ALTER TABLE í…Œì´ë¸”ëª… DROP PRIMARY KEY
       2) FK
-       ¤¡. Ãß°¡
-           ALTER TABLE ÀÚ½ÄÅ×ÀÌºí¸í ADD CONSTRAINT Á¦¾àÁ¶°Ç¸í FOREIGN KEY(Ä®·³) REFERENCES ºÎ¸ðÅ×ÀÌºí¸í(ÂüÁ¶ÇÒ Ä®·³)
-       ¤¤. »èÁ¦
-           ALTER TABLE Å×ÀÌºí¸í DROP CONSTRAINT Á¦¾àÁ¶°Ç¸í
-       ¤§.ÀÏ½ÃÁßÁö
-           ALTER TABLE Å×ÀÌºí¸í DISABLE CONSTRAINT Á¦¾àÁ¶°Ç¸í
-       ¤©.È°¼ºÈ­
-           ALTER TABLE Å×ÀÌºí¸í ENABLE CONSTRAINT Á¦¾àÁ¶°Ç¸í
+       ã„±. ì¶”ê°€
+           ALTER TABLE ìžì‹í…Œì´ë¸”ëª… ADD CONSTRAINT ì œì•½ì¡°ê±´ëª… FOREIGN KEY(ì¹¼ëŸ¼) REFERENCES ë¶€ëª¨í…Œì´ë¸”ëª…(ì°¸ì¡°í•  ì¹¼ëŸ¼)
+       ã„´. ì‚­ì œ
+           ALTER TABLE í…Œì´ë¸”ëª… DROP CONSTRAINT ì œì•½ì¡°ê±´ëª…
+       ã„·.ì¼ì‹œì¤‘ì§€
+           ALTER TABLE í…Œì´ë¸”ëª… DISABLE CONSTRAINT ì œì•½ì¡°ê±´ëª…
+       ã„¹.í™œì„±í™”
+           ALTER TABLE í…Œì´ë¸”ëª… ENABLE CONSTRAINT ì œì•½ì¡°ê±´ëª…
 */
 
--- ½Ç½À
+-- ì‹¤ìŠµ
 
--- 1. ÀºÇà Å×ÀÌºí¿¡ ¿¬¶ôÃ³(BANK_TEL) Ä®·³À» Ãß°¡ÇÏ½Ã¿À.
+-- 1. ì€í–‰ í…Œì´ë¸”ì— ì—°ë½ì²˜(BANK_TEL) ì¹¼ëŸ¼ì„ ì¶”ê°€í•˜ì‹œì˜¤.
 ALTER TABLE BANK_TBL ADD BANK_TEL VARCHAR2(15 BYTE) NOT NULL;
 
--- 2. ÀºÇà Å×ÀÌºíÀÇ ÀºÇà¸í(BANK_NAME) Ä®·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀ» VARCHAR2(15 BYTE)·Î º¯°æÇÏ½Ã¿À.
+-- 2. ì€í–‰ í…Œì´ë¸”ì˜ ì€í–‰ëª…(BANK_NAME) ì¹¼ëŸ¼ì˜ ë°ì´í„°íƒ€ìž…ì„ VARCHAR2(15 BYTE)ë¡œ ë³€ê²½í•˜ì‹œì˜¤.
 ALTER TABLE BANK_TBL MODIFY BANK_NAME VARCHAR2(15 BYTE);
 
--- 3. °í°´ Å×ÀÌºíÀÇ ³ªÀÌ(AGE) Ä®·³À» »èÁ¦ÇÏ½Ã¿À.
+-- 3. ê³ ê° í…Œì´ë¸”ì˜ ë‚˜ì´(AGE) ì¹¼ëŸ¼ì„ ì‚­ì œí•˜ì‹œì˜¤.
 ALTER TABLE CUSTOMER_TBL DROP COLUMN AGE;
 
--- 4. °í°´ Å×ÀÌºíÀÇ °í°´¹øÈ£(NO) Ä®·³¸íÀ» CUST_NO·Î º¯°æÇÏ½Ã¿À.
+-- 4. ê³ ê° í…Œì´ë¸”ì˜ ê³ ê°ë²ˆí˜¸(NO) ì¹¼ëŸ¼ëª…ì„ CUST_NOë¡œ ë³€ê²½í•˜ì‹œì˜¤.
 ALTER TABLE CUSTOMER_TBL RENAME COLUMN NO TO CUST_NO;
 
--- 5. °í°´ Å×ÀÌºí¿¡ GRADE Ä®·³À» Ãß°¡ÇÏ½Ã¿À. ('VIP', 'GOLD', 'SILVER', 'BRONZE' Áß ÇÏ³ªÀÇ °ªÀ» °¡Áöµµ·Ï ÇÑ´Ù.)
+-- 5. ê³ ê° í…Œì´ë¸”ì— GRADE ì¹¼ëŸ¼ì„ ì¶”ê°€í•˜ì‹œì˜¤. ('VIP', 'GOLD', 'SILVER', 'BRONZE' ì¤‘ í•˜ë‚˜ì˜ ê°’ì„ ê°€ì§€ë„ë¡ í•œë‹¤.)
 ALTER TABLE CUSTOMER_TBL ADD GRADE VARCHAR2(6 BYTE) CHECK(GRADE = 'VIP' OR GRADE = 'GOLD' OR GRADE = 'SIVER' OR GRADE = 'BONZE');
 ALTER TABLE CUSTOMER_TBL ADD GRADE VARCHAR2(6 BYTE) CHECK(GRADE IN('VIP', 'GOLD', 'SILVER', 'BRONZE'));
 
--- 6. °í°´ Å×ÀÌºíÀÇ °í°´¸í(NAME)°ú ¿¬¶ôÃ³(PHONE) Ä®·³ ÀÌ¸§À» CUST_NAME, CUST_PHONEÀ¸·Î º¯°æÇÏ½Ã¿À.
+-- 6. ê³ ê° í…Œì´ë¸”ì˜ ê³ ê°ëª…(NAME)ê³¼ ì—°ë½ì²˜(PHONE) ì¹¼ëŸ¼ ì´ë¦„ì„ CUST_NAME, CUST_PHONEìœ¼ë¡œ ë³€ê²½í•˜ì‹œì˜¤.
 ALTER TABLE CUSTOMER_TBL RENAME COLUMN NAME TO CUST_NAME;
 ALTER TABLE CUSTOMER_TBL RENAME COLUMN PHONE TO CUST_PHONE;
 
--- 7. °í°´ Å×ÀÌºíÀÇ ¿¬¶ôÃ³(CUST_PHONNE) Ä®·³À» ÇÊ¼ö Ä®·³À¸·Î º¯°æÇÏ½Ã¿À.
+-- 7. ê³ ê° í…Œì´ë¸”ì˜ ì—°ë½ì²˜(CUST_PHONNE) ì¹¼ëŸ¼ì„ í•„ìˆ˜ ì¹¼ëŸ¼ìœ¼ë¡œ ë³€ê²½í•˜ì‹œì˜¤.
 ALTER TABLE CUSTOMER_TBL MODIFY CUST_PHONE VARCHAR2(30 BYTE) NOT NULL;
 
--- 8. °í°´ Å×ÀÌºíÀÇ °í°´¸í(CUST_NAME) Ä®·³ÀÇ ÇÊ¼ö Á¦¾àÁ¶°ÇÀ» ¾ø¾Ö½Ã¿À.
-ALTER TABLE CUSTOMER_TBL MODIFY CUST_NAME VARCHAR2(30 BYTE) NULL; -- ¹Ýµå½Ã NULLÀ» ¸í½ÃÇØ¾ßÇÑ´Ù.
+-- 8. ê³ ê° í…Œì´ë¸”ì˜ ê³ ê°ëª…(CUST_NAME) ì¹¼ëŸ¼ì˜ í•„ìˆ˜ ì œì•½ì¡°ê±´ì„ ì—†ì• ì‹œì˜¤.
+ALTER TABLE CUSTOMER_TBL MODIFY CUST_NAME VARCHAR2(30 BYTE) NULL; -- ë°˜ë“œì‹œ NULLì„ ëª…ì‹œí•´ì•¼í•œë‹¤.
 
--- Å×ÀÌºí ±¸Á¶ È®ÀÎÇÏ±â
+-- í…Œì´ë¸” êµ¬ì¡° í™•ì¸í•˜ê¸°
 DESC BANK_TBL;
 DESC CUSTOMER_TBL;
-

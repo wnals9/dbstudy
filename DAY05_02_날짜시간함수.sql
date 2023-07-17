@@ -1,49 +1,49 @@
--- 1. ÇöÀç ³¯Â¥ ¹× ½Ã°£
+-- 1. í˜„ìž¬ ë‚ ì§œ ë° ì‹œê°„
 
--- ¿À¶óÅ¬ÀÌ ¼³Ä¡µÈ ¼­¹ö ±âÁØ ½Ã°£
-SELECT SYSDATE       -- DATE Çü½Ä
-     , SYSTIMESTAMP  -- TIMESTAMP Çü½Ä
+-- ì˜¤ë¼í´ì´ ì„¤ì¹˜ëœ ì„œë²„ ê¸°ì¤€ ì‹œê°„
+SELECT SYSDATE       -- DATE í˜•ì‹
+     , SYSTIMESTAMP  -- TIMESTAMP í˜•ì‹
   FROM DUAL;
 
--- ¼¼¼ÇÅ¸ÀÓÁ¸ ±âÁØ ½Ã°£
+-- ì„¸ì…˜íƒ€ìž„ì¡´ ê¸°ì¤€ ì‹œê°„
 SELECT SESSIONTIMEZONE
-     , CURRENT_DATE       -- DATE Çü½Ä
-     , CURRENT_TIMESTAMP  -- TIMESTAMP Çü½Ä
+     , CURRENT_DATE       -- DATE í˜•ì‹
+     , CURRENT_TIMESTAMP  -- TIMESTAMP í˜•ì‹
   FROM DUAL;
   
--- 2. ³¯Â¥¸¦ ¿øÇÏ´Â Çü½ÄÀ¸·Î Á¶È¸ÇÏ±â
+-- 2. ë‚ ì§œë¥¼ ì›í•˜ëŠ” í˜•ì‹ìœ¼ë¡œ ì¡°íšŒí•˜ê¸°
 SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD')
      , TO_CHAR(SYSDATE, 'YYYY-MM-DD AM HH:MI:SS')
      , TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
-     , TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI:SS.FF3')  -- ¹Ð¸®ÃÊ(ÃµºÐÀÇ 1ÃÊ) Æ÷ÇÔ
+     , TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI:SS.FF3')  -- ë°€ë¦¬ì´ˆ(ì²œë¶„ì˜ 1ì´ˆ) í¬í•¨
   FROM DUAL;
   
--- 3. DATE Çü½ÄÀÇ ³¯Â¥ ¿¬»ê
---    1) 1ÀÏÀ» ¼ýÀÚ 1·Î Ã³¸®ÇÑ´Ù.
---    2) 1=1ÀÏ, 1/24 = 1½Ã°£, 1/24/60 = 1ºÐ
-SELECT TO_CHAR(SYSDATE + 1,          'YYYY-MM-DD AM HH:MI:SS')  -- 1ÀÏ ÈÄ
-     , TO_CHAR(SYSDATE + 1/24,       'YYYY-MM-DD AM HH:MI:SS')  -- 1½Ã°£ ÈÄ
-     , TO_CHAR(SYSDATE + 1/24/60,    'YYYY-MM-DD AM HH:MI:SS')  -- 1ºÐ ÈÄ
-     , TO_CHAR(SYSDATE + 1/24/60/60, 'YYYY-MM-DD AH HH:MI:SS')  -- 1ÃÊ ÈÄ
+-- 3. DATE í˜•ì‹ì˜ ë‚ ì§œ ì—°ì‚°
+--    1) 1ì¼ì„ ìˆ«ìž 1ë¡œ ì²˜ë¦¬í•œë‹¤.
+--    2) 1=1ì¼, 1/24 = 1ì‹œê°„, 1/24/60 = 1ë¶„
+SELECT TO_CHAR(SYSDATE + 1,          'YYYY-MM-DD AM HH:MI:SS')  -- 1ì¼ í›„
+     , TO_CHAR(SYSDATE + 1/24,       'YYYY-MM-DD AM HH:MI:SS')  -- 1ì‹œê°„ í›„
+     , TO_CHAR(SYSDATE + 1/24/60,    'YYYY-MM-DD AM HH:MI:SS')  -- 1ë¶„ í›„
+     , TO_CHAR(SYSDATE + 1/24/60/60, 'YYYY-MM-DD AH HH:MI:SS')  -- 1ì´ˆ í›„
   FROM DUAL;
 
 SELECT SYSDATE - TO_DATE('23/07/01', 'YY/MM/DD')
-     , TRUNC(SYSDATE - TO_DATE('23/07/01', 'YY/MM/DD')) --°æ°úÇÑ ÀÏ¼ö
+     , TRUNC(SYSDATE - TO_DATE('23/07/01', 'YY/MM/DD')) --ê²½ê³¼í•œ ì¼ìˆ˜
   FROM DUAL;
 
--- 4. TIMESTAMP Çü½ÄÀÇ ³¯Â¥ ¿¬»ê
---    1) INTERVAL Å°¿öµå¸¦ ÀÌ¿ëÇÑ´Ù.
---    2) YEAR, MONTH, DAY, HOUR, MINUTE, SECOND ´ÜÀ§¸¦ »ç¿ëÇÑ´Ù.
-SELECT SYSTIMESTAMP + INTERVAL '1' YEAR   -- 1³â ÈÄ
-     , SYSTIMESTAMP + INTERVAL '1' MONTH  -- 1°³¿ù ÈÄ
-     , SYSTIMESTAMP + INTERVAL '1' DAY    -- 1ÀÏ ÈÄ
-     , SYSTIMESTAMP + INTERVAL '1' HOUR   -- 1½Ã°£ ÈÄ
-     , SYSTIMESTAMP + INTERVAL '1' MINUTE -- 1ºÐ ÈÄ
-     , SYSTIMESTAMP + INTERVAL '1' SECOND -- 1ÃÊ ÈÄ
+-- 4. TIMESTAMP í˜•ì‹ì˜ ë‚ ì§œ ì—°ì‚°
+--    1) INTERVAL í‚¤ì›Œë“œë¥¼ ì´ìš©í•œë‹¤.
+--    2) YEAR, MONTH, DAY, HOUR, MINUTE, SECOND ë‹¨ìœ„ë¥¼ ì‚¬ìš©í•œë‹¤.
+SELECT SYSTIMESTAMP + INTERVAL '1' YEAR   -- 1ë…„ í›„
+     , SYSTIMESTAMP + INTERVAL '1' MONTH  -- 1ê°œì›” í›„
+     , SYSTIMESTAMP + INTERVAL '1' DAY    -- 1ì¼ í›„
+     , SYSTIMESTAMP + INTERVAL '1' HOUR   -- 1ì‹œê°„ í›„
+     , SYSTIMESTAMP + INTERVAL '1' MINUTE -- 1ë¶„ í›„
+     , SYSTIMESTAMP + INTERVAL '1' SECOND -- 1ì´ˆ í›„
   FROM DUAL;
   
-SELECT SYSTIMESTAMP - TO_TIMESTAMP('23/07/01', 'YY/MM/DD') -- °æ°úÇÑ ±â°£ÀÌ TIMESTAMP Çü½ÄÀ¸·Î ¹ÝÈ¯
-     , EXTRACT(DAY FROM SYSTIMESTAMP - TO_TIMESTAMP('23/07/01', 'YY/MM/DD'))  -- °æ°úÇÑ ±â°£¿¡¼­ ÀÏ¼ö¸¦ ÃßÃâ
+SELECT SYSTIMESTAMP - TO_TIMESTAMP('23/07/01', 'YY/MM/DD') -- ê²½ê³¼í•œ ê¸°ê°„ì´ TIMESTAMP í˜•ì‹ìœ¼ë¡œ ë°˜í™˜
+     , EXTRACT(DAY FROM SYSTIMESTAMP - TO_TIMESTAMP('23/07/01', 'YY/MM/DD'))  -- ê²½ê³¼í•œ ê¸°ê°„ì—ì„œ ì¼ìˆ˜ë¥¼ ì¶”ì¶œ
   FROM DUAL;
 
   

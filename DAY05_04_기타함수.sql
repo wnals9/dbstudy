@@ -1,34 +1,34 @@
--- 1. ¼øÀ§ ±¸ÇÏ±â
--- RANK() OVER(ORDER BY Ä®·³ ASC)  : ³·Àº °ªÀÌ 1µî
--- RANK() OVER(ORDER BY Ä®·³ DESC) : ³ôÀº °ªÀÌ 1µî
+-- 1. ìˆœìœ„ êµ¬í•˜ê¸°
+-- RANK() OVER(ORDER BY ì¹¼ëŸ¼ ASC)  : ë‚®ì€ ê°’ì´ 1ë“±
+-- RANK() OVER(ORDER BY ì¹¼ëŸ¼ DESC) : ë†’ì€ ê°’ì´ 1ë“±
 SELECT EMPLOYEE_ID
      , SALARY
-     , RANK() OVER(ORDER BY SALARY DESC) AS ¿¬ºÀ¼øÀ§ -- ¿¬ºÀ ³»¸²Â÷¼ø Á¤·Ä ÈÄ ¼øÀ§ ¸Å±â±â(µ¿Á¡ÀÚ´Â °°Àº ¼øÀ§¸¦ °¡Áü)
+     , RANK() OVER(ORDER BY SALARY DESC) AS ì—°ë´‰ìˆœìœ„ -- ì—°ë´‰ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ í›„ ìˆœìœ„ ë§¤ê¸°ê¸°(ë™ì ìžëŠ” ê°™ì€ ìˆœìœ„ë¥¼ ê°€ì§)
   FROM EMPLOYEES;
   
 SELECT EMPLOYEE_ID    
      , HIRE_DATE
-     , RANK() OVER(ORDER BY HIRE_DATE)   AS ÀÔ»ç¼øÀ§ -- °í¿ëÀÏ ¿À¸§Â÷¼ø Á¤·Ä ÈÄ ¼øÀ§ ¸Å±â±â
+     , RANK() OVER(ORDER BY HIRE_DATE)   AS ìž…ì‚¬ìˆœìœ„ -- ê³ ìš©ì¼ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ í›„ ìˆœìœ„ ë§¤ê¸°ê¸°
   FROM EMPLOYEES;
   
 
--- 2. Çà ¹øÈ£ ±¸ÇÏ±â
+-- 2. í–‰ ë²ˆí˜¸ êµ¬í•˜ê¸°
 SELECT EMPLOYEE_ID
      , SALARY
-     , ROW_NUMBER() OVER(ORDER BY SALARY DESC)  -- ¿¬ºÀ ³»¸²Â÷¼ø Á¤·Ä ÈÄ ¹øÈ£ ¸Å±â±â(µ¿Á¡ÀÚ Ã³¸® ¹æ½Ä ¾øÀ½)
+     , ROW_NUMBER() OVER(ORDER BY SALARY DESC)  -- ì—°ë´‰ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ í›„ ë²ˆí˜¸ ë§¤ê¸°ê¸°(ë™ì ìž ì²˜ë¦¬ ë°©ì‹ ì—†ìŒ)
   FROM EMPLOYEES;
   
   
--- 3. ¾ÏÈ£È­ ÇÔ¼ö
-SELECT STANDARD_HASH('1111', 'SHA1')   -- ¾ÏÈ£È­ ¾Ë°í¸®Áò SHA1
-     , STANDARD_HASH('1111', 'SHA256') -- ¾ÏÈ£È­ ¾Ï°í¸®Áò SHA256
-     , STANDARD_HASH('1111', 'SHA384') -- ¾ÏÈ£È­ ¾Ë°í¸®Áò SHA384
-     , STANDARD_HASH('1111', 'SHA512') -- ¾ÏÈ£È­ ¾Ë°í¸®Áò SHA512
-     , STANDARD_HASH('1111', 'MD5')    -- ¾ÏÈ£È­ ¾Ë°í¸®Áò MD5
+-- 3. ì•”í˜¸í™” í•¨ìˆ˜
+SELECT STANDARD_HASH('1111', 'SHA1')   -- ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜ SHA1
+     , STANDARD_HASH('1111', 'SHA256') -- ì•”í˜¸í™” ì•”ê³ ë¦¬ì¦˜ SHA256
+     , STANDARD_HASH('1111', 'SHA384') -- ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜ SHA384
+     , STANDARD_HASH('1111', 'SHA512') -- ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜ SHA512
+     , STANDARD_HASH('1111', 'MD5')    -- ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜ MD5
   FROM DUAL;
   
 
--- 4. ºÐ±â Ã³¸® ÇÔ¼ö
+-- 4. ë¶„ê¸° ì²˜ë¦¬ í•¨ìˆ˜
 SELECT EMPLOYEE_ID
      , DEPARTMENT_ID
      , DECODE(DEPARTMENT_ID
@@ -40,7 +40,7 @@ SELECT EMPLOYEE_ID
         , 60, 'IT') AS DEPARTMENT_NAME
   FROM EMPLOYEES;
 
--- 5. ºÐ±â Ã³¸® Ç¥Çö½Ä
+-- 5. ë¶„ê¸° ì²˜ë¦¬ í‘œí˜„ì‹
 SELECT EMPLOYEE_ID
      , DEPARTMENT_ID
      , CASE

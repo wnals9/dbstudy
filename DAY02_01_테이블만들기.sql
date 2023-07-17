@@ -1,37 +1,37 @@
 /*
-    Å×ÀÌºí(table)
-    1. µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â °´Ã¼ÀÌ´Ù.
-    2. Ç¥ Çü½ÄÀ» °¡Áø´Ù.
-    3. Çà(row)°ú ¿­(column)ÀÇ ÁýÇÕ ÇüÅÂÀÌ´Ù.
+    í…Œì´ë¸”(table)
+    1. ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ë°ì´í„°ë¥¼ ì €ìž¥í•˜ëŠ” ê°ì²´ì´ë‹¤.
+    2. í‘œ í˜•ì‹ì„ ê°€ì§„ë‹¤.
+    3. í–‰(row)ê³¼ ì—´(column)ì˜ ì§‘í•© í˜•íƒœì´ë‹¤.
 */
 
 /*
-    µ¥ÀÌÅÍ Å¸ÀÔ
-    1.NUMBER(p,s) : Á¤¹Ðµµ p, ½ºÄÉÀÏ s·Î Ç¥ÇöÇÏ´Â ¼ýÀÚ Çü½Ä
-        1) Á¤¹Ðµµ p : ÀüÃ¼ À¯È¿ ¼ýÀÚÀÇ °¹¼ö
-        2) ½ºÄÉÀÏ s : ¼Ò¼öºÎÀÇ À¯È¿ ¼ýÀÚÀÇ °¹¼ö
-    2. CHAR(size) : °íÁ¤ ¹®ÀÚ(character)
-        1) ±ÛÀÚ ¼ö°¡ °íÁ¤µÈ Å¸ÀÔ(¿¹½Ã : ÇÚµåÆù¹øÈ£, ÁÖ¹Î¹øÈ£ µî)
-        2) size : ÃÖ´ë 2000 byte
-    3.VARCHAR2(size) : °¡º¯ ¹®ÀÚ¤¤
-        1) ±ÛÀÚ ¼ö°¡ °íÁ¤µÇÁö ¾ÊÀº Å¸ÀÔ(¿¹½Ã : ÀÌ¸§, ÀÌ¸ÞÀÏ, ÁÖ¼Ò µî)
-        2) size : ÃÖ´ë 4000 byte
-    4.CLOB : Å« ÅØ½ºÆ® Å¸ÀÔ
-    5.DATE : ³¯Â¥¿Í ½Ã°£À» µ¿½Ã¿¡ Ç¥ÇöÇÏ´Â Å¸ÀÔ(³â,¿ù,ÀÏ,½Ã,ºÐ,ÃÊ)
-    6.TIMESTAMP : ³¯Â¥¿Í ½Ã°£À» µ¿½Ã¿¡ Ç¥ÇöÇÏ´Â Å¸ÀÔ(³â,¿ù,ÀÏ,½Ã,ºÐ,ÃÊ,¸¶ÀÌÅ©·ÎÃÊ(¹é¸¸ºÐÀÇ 1ÃÊ))
+    ë°ì´í„° íƒ€ìž…
+    1.NUMBER(p,s) : ì •ë°€ë„ p, ìŠ¤ì¼€ì¼ së¡œ í‘œí˜„í•˜ëŠ” ìˆ«ìž í˜•ì‹
+        1) ì •ë°€ë„ p : ì „ì²´ ìœ íš¨ ìˆ«ìžì˜ ê°¯ìˆ˜
+        2) ìŠ¤ì¼€ì¼ s : ì†Œìˆ˜ë¶€ì˜ ìœ íš¨ ìˆ«ìžì˜ ê°¯ìˆ˜
+    2. CHAR(size) : ê³ ì • ë¬¸ìž(character)
+        1) ê¸€ìž ìˆ˜ê°€ ê³ ì •ëœ íƒ€ìž…(ì˜ˆì‹œ : í•¸ë“œí°ë²ˆí˜¸, ì£¼ë¯¼ë²ˆí˜¸ ë“±)
+        2) size : ìµœëŒ€ 2000 byte
+    3.VARCHAR2(size) : ê°€ë³€ ë¬¸ìžã„´
+        1) ê¸€ìž ìˆ˜ê°€ ê³ ì •ë˜ì§€ ì•Šì€ íƒ€ìž…(ì˜ˆì‹œ : ì´ë¦„, ì´ë©”ì¼, ì£¼ì†Œ ë“±)
+        2) size : ìµœëŒ€ 4000 byte
+    4.CLOB : í° í…ìŠ¤íŠ¸ íƒ€ìž…
+    5.DATE : ë‚ ì§œì™€ ì‹œê°„ì„ ë™ì‹œì— í‘œí˜„í•˜ëŠ” íƒ€ìž…(ë…„,ì›”,ì¼,ì‹œ,ë¶„,ì´ˆ)
+    6.TIMESTAMP : ë‚ ì§œì™€ ì‹œê°„ì„ ë™ì‹œì— í‘œí˜„í•˜ëŠ” íƒ€ìž…(ë…„,ì›”,ì¼,ì‹œ,ë¶„,ì´ˆ,ë§ˆì´í¬ë¡œì´ˆ(ë°±ë§Œë¶„ì˜ 1ì´ˆ))
 */
 
 /*
-    Á¦¾àÁ¶°Ç 5°¡Áö
-    1.NOT NULL    : ÇÊ¼ö
-    2.UNIQUE      : Áßº¹ ºÒ°¡
-    3.PRIMARY KEY : ±âº»Å°
-    4.FOREIGN KEY : ¿Ü·¡Å°
-    5.CHECK       : °ªÀÇ Á¦ÇÑ
+    ì œì•½ì¡°ê±´ 5ê°€ì§€
+    1.NOT NULL    : í•„ìˆ˜
+    2.UNIQUE      : ì¤‘ë³µ ë¶ˆê°€
+    3.PRIMARY KEY : ê¸°ë³¸í‚¤
+    4.FOREIGN KEY : ì™¸ëž˜í‚¤
+    5.CHECK       : ê°’ì˜ ì œí•œ
 */
 
 
---°í°´ Å×ÀÌºí
+--ê³ ê° í…Œì´ë¸”
 DROP TABLE CUSTOMER_T;
 CREATE TABLE CUSTOMER_T (
     NO    NUMBER NOT NULL   PRIMARY KEY

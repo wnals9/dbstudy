@@ -1,79 +1,79 @@
--- 1. ´ë¼Ò¹®ÀÚ º¯È¯ÇÏ±â
-SELECT UPPER(EMAIL)   -- ¸ðµÎ ´ë¹®ÀÚ
-     , LOWER(EMAIL)   -- ¸ðµÎ ¼Ò¹®ÀÚ
-     , INITCAP(EMAIL) -- Ã¹ ±ÛÀÚ¸¸ ´ë¹®ÀÚ, ³ª¸ÓÁö´Â ¼Ò¹®ÀÚ
+-- 1. ëŒ€ì†Œë¬¸ìž ë³€í™˜í•˜ê¸°
+SELECT UPPER(EMAIL)   -- ëª¨ë‘ ëŒ€ë¬¸ìž
+     , LOWER(EMAIL)   -- ëª¨ë‘ ì†Œë¬¸ìž
+     , INITCAP(EMAIL) -- ì²« ê¸€ìžë§Œ ëŒ€ë¬¸ìž, ë‚˜ë¨¸ì§€ëŠ” ì†Œë¬¸ìž
   FROM EMPLOYEES;
   
--- 2. ±ÛÀÚ ¼ö
+-- 2. ê¸€ìž ìˆ˜
 SELECT FIRST_NAME
      , LENGTH(FIRST_NAME)
   FROM EMPLOYEES;
   
--- 3. ¹ÙÀÌÆ® ¼ö
+-- 3. ë°”ì´íŠ¸ ìˆ˜
 SELECT FIRST_NAME
      , LENGTH(FIRST_NAME)
   FROM EMPLOYEES;
   
--- 4. ¿¬°áÇÏ±â
---    1) || ¿¬»êÀÚ (¿À¶óÅ¬ Àü¿ëÀÌ¹Ç·Î ´Ù¸¥ DB¿¡¼­´Â ¿À·ù°¡ ³­´Ù.)
---    2) CONCAT(CNCATENATE) ÇÔ¼ö
---       CONCAT(A, B) : ÀÎ¼ö¸¦ 2°³¸¸ Àü´ÞÇÒ ¼ö ÀÖ´Ù
---       CONCAT(CONCAT(A, B), C) : ÀÎ¼ö 3°³ ÀÌ»óÀº CONCAT ÇÔ¼ö ¿©·¯ °³·Î ÇØ°áÇÑ´Ù.
+-- 4. ì—°ê²°í•˜ê¸°
+--    1) || ì—°ì‚°ìž (ì˜¤ë¼í´ ì „ìš©ì´ë¯€ë¡œ ë‹¤ë¥¸ DBì—ì„œëŠ” ì˜¤ë¥˜ê°€ ë‚œë‹¤.)
+--    2) CONCAT(CNCATENATE) í•¨ìˆ˜
+--       CONCAT(A, B) : ì¸ìˆ˜ë¥¼ 2ê°œë§Œ ì „ë‹¬í•  ìˆ˜ ìžˆë‹¤
+--       CONCAT(CONCAT(A, B), C) : ì¸ìˆ˜ 3ê°œ ì´ìƒì€ CONCAT í•¨ìˆ˜ ì—¬ëŸ¬ ê°œë¡œ í•´ê²°í•œë‹¤.
 SELECT *
   FROM EMPLOYEES
  WHERE PHONE_NUMBER LIKE CONCAT('515','%');     
   
 SELECT *
   FROM EMPLOYEES
- WHERE EMAIL LIKE CONCAT(CONCAT('%', 'A'), '%');   -- A¸¦ Æ÷ÇÔ('%' || 'A' || '%')
+ WHERE EMAIL LIKE CONCAT(CONCAT('%', 'A'), '%');   -- Aë¥¼ í¬í•¨('%' || 'A' || '%')
  
--- 5. ÀÏºÎ¸¸ ¹ÝÈ¯ÇÏ±â
-SELECT SUBSTR(PHONE_NUMBER, 1, 3)  -- ÀüÈ­¹øÈ£ÀÇ 1¹øÂ° ±ÛÀÚºÎÅÍ 3±ÛÀÚ¸¦ ¹ÝÈ¯
-     , SUBSTR(PHONE_NUMBER, 5)     -- ÀüÈ­¹øÈ£ÀÇ 5¹øÂ° ±ÛÀÚºÎÅÍ ³¡±îÁö ¹ÝÈ¯
+-- 5. ì¼ë¶€ë§Œ ë°˜í™˜í•˜ê¸°
+SELECT SUBSTR(PHONE_NUMBER, 1, 3)  -- ì „í™”ë²ˆí˜¸ì˜ 1ë²ˆì§¸ ê¸€ìžë¶€í„° 3ê¸€ìžë¥¼ ë°˜í™˜
+     , SUBSTR(PHONE_NUMBER, 5)     -- ì „í™”ë²ˆí˜¸ì˜ 5ë²ˆì§¸ ê¸€ìžë¶€í„° ëê¹Œì§€ ë°˜í™˜
   FROM EMPLOYEES;
   
--- 6. Æ¯Á¤ ¹®ÀÚÀÇ À§Ä¡ ¹ÝÈ¯ÇÏ±â
---    ¹®ÀÚÀÇ À§Ä¡´Â 1ºÎÅÍ ½ÃÀÛÇÑ´Ù.
---    ¸øÃ£À¸¸é 0À» ¹ÝÈ¯ÇÑ´Ù.
+-- 6. íŠ¹ì • ë¬¸ìžì˜ ìœ„ì¹˜ ë°˜í™˜í•˜ê¸°
+--    ë¬¸ìžì˜ ìœ„ì¹˜ëŠ” 1ë¶€í„° ì‹œìž‘í•œë‹¤.
+--    ëª»ì°¾ìœ¼ë©´ 0ì„ ë°˜í™˜í•œë‹¤.
 SELECT EMAIL 
      , INSTR(EMAIL, 'A')
   FROM EMPLOYEES;
   
--- 7. ¹Ù²Ù±â
+-- 7. ë°”ê¾¸ê¸°
 SELECT EMAIL
-     , REPLACE(EMAIL, 'A', '$') -- ¸ðµç A¸¦ Ã£¾Æ¼­ $·Î ¹Ù²Ù±â
+     , REPLACE(EMAIL, 'A', '$') -- ëª¨ë“  Aë¥¼ ì°¾ì•„ì„œ $ë¡œ ë°”ê¾¸ê¸°
   FROM EMPLOYEES;
   
--- 8. Ã¤¿ì±â
---    1) LPAD(Ç¥Çö½Ä, ÀüÃ¼Æø, Ã¤¿ï¹®ÀÚ)
---    2) RPAD(Ç¥Çö½Ä, ÀüÃ¼Æø, Ã¤¿ï¹®ÀÚ)
+-- 8. ì±„ìš°ê¸°
+--    1) LPAD(í‘œí˜„ì‹, ì „ì²´í­, ì±„ìš¸ë¬¸ìž)
+--    2) RPAD(í‘œí˜„ì‹, ì „ì²´í­, ì±„ìš¸ë¬¸ìž)
 SELECT DEPARTMENT_ID
      , LPAD(DEPARTMENT_ID, 3, 0)
      , EMAIL
      , RPAD(SUBSTR(EMAIL, 1, 2), 5, '*')
   FROM EMPLOYEES;
   
--- 9. °ø¹é Á¦°Å
-SELECT '[' || LTRIM('     HELLO     WORLD     ') || ']'  -- ¿ÞÂÊ °ø¹é Á¦°Å
-     , '[' || RTRIM('     HELLO     WORLD     ') || ']'  -- ¿À¸¥ÂÊ °ø¹é Á¦°Å
-     , '[' ||  TRIM('     HELLO     WORLD     ') || ']'  -- ¿ÞÂÊ/¿À¸¥ÂÊ °ø¹é Á¦°Å
+-- 9. ê³µë°± ì œê±°
+SELECT '[' || LTRIM('     HELLO     WORLD     ') || ']'  -- ì™¼ìª½ ê³µë°± ì œê±°
+     , '[' || RTRIM('     HELLO     WORLD     ') || ']'  -- ì˜¤ë¥¸ìª½ ê³µë°± ì œê±°
+     , '[' ||  TRIM('     HELLO     WORLD     ') || ']'  -- ì™¼ìª½/ì˜¤ë¥¸ìª½ ê³µë°± ì œê±°
   FROM DUAL;
   
 
--- ½Ç½À.
--- 1. »ç¿ø Å×ÀÌºíÀÇ JOB_ID ¿¡¼­ ¹ØÁÙ(_) ¾Õ/µÞ ºÎºÐ ºÐ¸® Á¶È¸ÇÏ±â
--- ¿¹½Ã) IT_PROG --> IT / PROG
---      ±ÛÀÚ¼ö        : 7
---      ¹ØÁÙÀ§Ä¡      : 3
---      ¹ØÁÙ ¾Õ ±ÛÀÚ¼ö : 2(¹ØÁÙÀ§Ä¡ -1)
---      ¹ØÁÙ ¾Õ ±ÛÀÚ¼ö : 4(±ÛÀÚ¼ö - ¹ØÁÙÀ§Ä¡) (»ç½ÇÀº °è»êÀÌ ÇÊ¿äÇÏÁö ¾Ê´Ù.)
+-- ì‹¤ìŠµ.
+-- 1. ì‚¬ì› í…Œì´ë¸”ì˜ JOB_ID ì—ì„œ ë°‘ì¤„(_) ì•ž/ë’· ë¶€ë¶„ ë¶„ë¦¬ ì¡°íšŒí•˜ê¸°
+-- ì˜ˆì‹œ) IT_PROG --> IT / PROG
+--      ê¸€ìžìˆ˜        : 7
+--      ë°‘ì¤„ìœ„ì¹˜      : 3
+--      ë°‘ì¤„ ì•ž ê¸€ìžìˆ˜ : 2(ë°‘ì¤„ìœ„ì¹˜ -1)
+--      ë°‘ì¤„ ì•ž ê¸€ìžìˆ˜ : 4(ê¸€ìžìˆ˜ - ë°‘ì¤„ìœ„ì¹˜) (ì‚¬ì‹¤ì€ ê³„ì‚°ì´ í•„ìš”í•˜ì§€ ì•Šë‹¤.)
 SELECT JOB_ID
      , SUBSTR(JOB_ID, 1, INSTR(JOB_ID, '_') - 1)
      , SUBSTR(JOB_ID, INSTR(JOB_ID, '_') +1, LENGTH(JOB_ID) - INSTR(JOB_ID, '_'))
      , SUBSTR(JOB_ID, INSTR(JOB_ID, '_') +1)
   FROM EMPLOYEES;
--- 2. FIRST_NAME°ú LAST_NAMEÀ» ¿¬°áÇØ¼­ ¸ðµÎ ´ë¹®ÀÚ·Î ¹Ù²Û FULL_NAME Á¶È¸ÇÏ±â
--- ¿¹½Ã) FIRST_NAME : Steven
+-- 2. FIRST_NAMEê³¼ LAST_NAMEì„ ì—°ê²°í•´ì„œ ëª¨ë‘ ëŒ€ë¬¸ìžë¡œ ë°”ê¾¼ FULL_NAME ì¡°íšŒí•˜ê¸°
+-- ì˜ˆì‹œ) FIRST_NAME : Steven
 --      LAST_NAME   : KING
 --      FULL_NAME   : STEVEN KING
 SELECT UPPER(CONCAT(CONCAT(FIRST_NAME, ' '), LAST_NAME)) AS FULL_NAME

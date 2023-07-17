@@ -1,74 +1,74 @@
-SELECT 1 + 1 FROM DUAL;  -- DUAL = FROMÀýÀÌ ÇÊ¿ä¾øÁö¸¸ FROMÀýÀÌ¾øÀ¸¸é ½ÇÇàÀÌ¾ÈµÇ¹Ç·Î FROMÀýÀÌ ÇÊ¿ä¾øÀ»¶§ ¾²´Â°Í
+SELECT 1 + 1 FROM DUAL;  -- DUAL = FROMì ˆì´ í•„ìš”ì—†ì§€ë§Œ FROMì ˆì´ì—†ìœ¼ë©´ ì‹¤í–‰ì´ì•ˆë˜ë¯€ë¡œ FROMì ˆì´ í•„ìš”ì—†ì„ë•Œ ì“°ëŠ”ê²ƒ
 CREATE SEQUENCE TEST_SEQ ORDER;
 SELECT TEST_SEQ.NEXTVAL FROM DUAL;
 
 /*
-    DUAL Å×ÀÌºí
-    1. DUMMY Ä®·³ 1°³¸¦ °¡Áö°í ÀÖ´Â Å×ÀÌºíÀÌ´Ù.
-    2. 'X'°ªÀ» °¡Áö°íÀÖ´Ù.
-    3. FROMÀýÀÌ ÇÊ¿ä ¾ø´Â SELECT¹®À» »ç¿ëÇÒ ¶§ DUAL Å×ÀÌºíÀ» ÀÌ¿ëÇÑ´Ù.
+    DUAL í…Œì´ë¸”
+    1. DUMMY ì¹¼ëŸ¼ 1ê°œë¥¼ ê°€ì§€ê³  ìžˆëŠ” í…Œì´ë¸”ì´ë‹¤.
+    2. 'X'ê°’ì„ ê°€ì§€ê³ ìžˆë‹¤.
+    3. FROMì ˆì´ í•„ìš” ì—†ëŠ” SELECTë¬¸ì„ ì‚¬ìš©í•  ë•Œ DUAL í…Œì´ë¸”ì„ ì´ìš©í•œë‹¤.
 */
 
--- µ¥ÀÌÅÍÅ¸ÀÔº¯È¯ : ¼ýÀÚ, ³¯Â¥, ¹®ÀÚ µîÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀ» ¹Ù²Þ
+-- ë°ì´í„°íƒ€ìž…ë³€í™˜ : ìˆ«ìž, ë‚ ì§œ, ë¬¸ìž ë“±ì˜ ë°ì´í„°íƒ€ìž…ì„ ë°”ê¿ˆ
 
 /*
-    1. ¹®ÀÚ -> ¼ýÀÚ º¯È¯ÇÏ±â
-        TO_NUMBER(¹®ÀÚ)
+    1. ë¬¸ìž -> ìˆ«ìž ë³€í™˜í•˜ê¸°
+        TO_NUMBER(ë¬¸ìž)
 */
 SELECT TO_NUMBER('123')
   FROM DUAL;
 
 /*
-    2. ¼ýÀÚ -> ¹®ÀÚ º¯È¯ÇÏ±â
-        TO_CHAR(¼ýÀÚ, [Çü½Ä])
+    2. ìˆ«ìž -> ë¬¸ìž ë³€í™˜í•˜ê¸°
+        TO_CHAR(ìˆ«ìž, [í˜•ì‹])
 */
 SELECT TO_CHAR(1234)
      , TO_CHAR(1234, '999999')  -- '  1234'
      , TO_CHAR(1234, '000000')  -- '001234'
      , TO_CHAR(1234, '9,999')   -- '1,234'
-     , TO_CHAR(12345, '9,999')   -- '#####' ¼ýÀÚ´Â 5ÀÚ¸®ÀÎµ¥, Çü½ÄÀº 4ÀÚ¸®¸¸ ÁöÁ¤µÇ¾ú´Ù.
+     , TO_CHAR(12345, '9,999')   -- '#####' ìˆ«ìžëŠ” 5ìžë¦¬ì¸ë°, í˜•ì‹ì€ 4ìžë¦¬ë§Œ ì§€ì •ë˜ì—ˆë‹¤.
      , TO_CHAR(12345, '99,999') -- '12,345'
   FROM DUAL;
   
   /*
-    3. ³¯Â¥ -> ¹®ÀÚ º¯È¯ÇÏ±â
-        TO_CHAR(³¯Â¥, [Çü½Ä])
+    3. ë‚ ì§œ -> ë¬¸ìž ë³€í™˜í•˜ê¸°
+        TO_CHAR(ë‚ ì§œ, [í˜•ì‹])
         
-        *³¯Â¥/½Ã°£ Çü½Ä
-        1) YY   : ³âµµ 2ÀÚ¸®
-        2) YYYY : ³âµµ 4ÀÚ¸®
-        3) MM   : ¿ù 2ÀÚ¸® (01 ~ 12)
-        4) DD   : ÀÏ 2ÀÚ¸® (01 ~ 31)
-        5) AM   : ¿ÀÀü / ¿ÀÈÄ
-        6) HH   : 12½Ã°¢(01 ~ 12)
-        7) HH24 : 24½Ã°¢(00 ~ 23)
-        8) MI   : ºÐ(00 ~ 59)
-        9) SS   : ÃÊ(00 ~ 59)
+        *ë‚ ì§œ/ì‹œê°„ í˜•ì‹
+        1) YY   : ë…„ë„ 2ìžë¦¬
+        2) YYYY : ë…„ë„ 4ìžë¦¬
+        3) MM   : ì›” 2ìžë¦¬ (01 ~ 12)
+        4) DD   : ì¼ 2ìžë¦¬ (01 ~ 31)
+        5) AM   : ì˜¤ì „ / ì˜¤í›„
+        6) HH   : 12ì‹œê°(01 ~ 12)
+        7) HH24 : 24ì‹œê°(00 ~ 23)
+        8) MI   : ë¶„(00 ~ 59)
+        9) SS   : ì´ˆ(00 ~ 59)
   */
 SELECT TO_CHAR(HIRE_DATE, 'YYYY-MM-DD')
   FROM EMPLOYEES;
 /*
-    4. ¹®ÀÚ -> ³¯Â¥ º¯È¯ÇÏ±â
-        TO_DATE(¹®ÀÚ, [Çü½Ä])
+    4. ë¬¸ìž -> ë‚ ì§œ ë³€í™˜í•˜ê¸°
+        TO_DATE(ë¬¸ìž, [í˜•ì‹])
 */
 
--- ÇöÀç ³¯Â¥¿Í ½Ã°£
+-- í˜„ìž¬ ë‚ ì§œì™€ ì‹œê°„
 SELECT SYSDATE       -- '23/07'04'
      , SYSTIMESTAMP  -- '23/07/04 14:46:44.303000000 +09:00'
   FROM DUAL;
   
--- ÇöÀç ³¯Â¥¿Í ½Ã°£ - Çü½Ä ÁöÁ¤
+-- í˜„ìž¬ ë‚ ì§œì™€ ì‹œê°„ - í˜•ì‹ ì§€ì •
 SELECT TO_CHAR(SYSDATE,      'YYYY-MM-DD AM HH:MI:SS')
       ,TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI:SS')
   FROM DUAL;
 
 
--- ¹®ÀÚ·Î µÈ ³¯Â¥/½Ã°£À» ½ÇÁ¦ ³¯Â¥/½Ã°£ Å¸ÀÔÀ¸·Î º¯È¯ÇÏ±â
-SELECT TO_DATE('23/07/04')              -- '³â/¿ù/ÀÏ' Çü½ÄÀ¸·Î ÇØ¼®
-      ,TO_DATE('23/07/04', 'DD/MM/YY')  -- 'ÀÏ/¿ù/³â' Çü½ÄÀ¸·Î ÇØ¼®
+-- ë¬¸ìžë¡œ ëœ ë‚ ì§œ/ì‹œê°„ì„ ì‹¤ì œ ë‚ ì§œ/ì‹œê°„ íƒ€ìž…ìœ¼ë¡œ ë³€í™˜í•˜ê¸°
+SELECT TO_DATE('23/07/04')              -- 'ë…„/ì›”/ì¼' í˜•ì‹ìœ¼ë¡œ í•´ì„
+      ,TO_DATE('23/07/04', 'DD/MM/YY')  -- 'ì¼/ì›”/ë…„' í˜•ì‹ìœ¼ë¡œ í•´ì„
   FROM DUAL;
 
--- ¿¹Á¦ µ¥ÀÌÅÍ ÀÛ¼º
+-- ì˜ˆì œ ë°ì´í„° ìž‘ì„±
 DROP TABLE EXAMPLE_T;
 CREATE TABLE EXAMPLE_T (
     DT1 DATE
@@ -77,18 +77,17 @@ CREATE TABLE EXAMPLE_T (
 INSERT INTO EXAMPLE_T(DT1, DT2) VALUES(SYSDATE, SYSTIMESTAMP);
 COMMIT;
 
--- DT1ÀÌ '23/07/04/'ÀÎ µ¥ÀÌÅÍ¸¦ Á¶È¸ÇÏ±â(¾È µÊ)
+-- DT1ì´ '23/07/04/'ì¸ ë°ì´í„°ë¥¼ ì¡°íšŒí•˜ê¸°(ì•ˆ ë¨)
 SELECT * 
   FROM EXAMPLE_T
  WHERE DT1 = '23/07/04';
  
 SELECT *
   FROM EXAMPLE_T
- WHERE DT1 = TO_DATE('23/07/04', 'YY/MM/DD'); -- YY/MM/DD´Â ±âº»Çü½ÄÀÌ¹Ç·Î »ý·«°¡´É
+ WHERE DT1 = TO_DATE('23/07/04', 'YY/MM/DD'); -- YY/MM/DDëŠ” ê¸°ë³¸í˜•ì‹ì´ë¯€ë¡œ ìƒëžµê°€ëŠ¥
  
--- DT1ÀÌ '23/07/04'ÀÎ µ¥ÀÌÅÍ¸¦ Á¶È¸ÇÏ±â(µÊ)
+-- DT1ì´ '23/07/04'ì¸ ë°ì´í„°ë¥¼ ì¡°íšŒí•˜ê¸°(ë¨)
 SELECT *
   FROM EXAMPLE_T
  WHERE TO_DATE(DT1, 'YY/MM/DD') = TO_DATE('23/07/04', 'YY/MM/DD');
  
-

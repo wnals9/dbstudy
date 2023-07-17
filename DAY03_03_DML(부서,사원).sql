@@ -1,23 +1,23 @@
 /*
     DML
     1. Data Manipulation languege
-    2. µ¥ÀÌÅÍ(Çà, Row)¸¦ Á¶ÀÛ(»ðÀÔ, ¼öÁ¤, »èÁ¦)ÇÏ´Â ¾ð¾îÀÌ´Ù.
-    3. Æ®·£Àè¼Ç ´ë»óÀÌ´Ù.(ÀÛ¾÷ÀÌ ¿Ï·áµÇ¸é COMMIT, ÀÛ¾÷À» Ãë¼ÒÇÏ·Á¸é ROLLBACKÀÌ ÇÊ¿äÇÏ´Ù.)
-      1) COMMIT   : ÀÛ¾÷À» ÀúÀåÇÑ´Ù. COMMITÀÌ ¿Ï·áµÈ ÀÛ¾÷Àº ROLLBACKÀ¸·Î Ãë¼ÒÇÒ ¼ö ¾ø´Ù.
-      2) ROLLBACK : ÀÛ¾÷À» Ãë¼ÒÇÑ´Ù. COMMIT 'ÀÌÈÄ' ÀÛ¾÷À» Ãë¼ÒÇÑ´Ù.
-    4. Á¾·ù
-      1) »ðÀÔ : INSERT INTO VALUES
-      2) ¼öÁ¤ : UPDATE SET WHERE
-      3) »èÁ¦ : DELETE FROM WHERE
+    2. ë°ì´í„°(í–‰, Row)ë¥¼ ì¡°ìž‘(ì‚½ìž…, ìˆ˜ì •, ì‚­ì œ)í•˜ëŠ” ì–¸ì–´ì´ë‹¤.
+    3. íŠ¸ëžœìž­ì…˜ ëŒ€ìƒì´ë‹¤.(ìž‘ì—…ì´ ì™„ë£Œë˜ë©´ COMMIT, ìž‘ì—…ì„ ì·¨ì†Œí•˜ë ¤ë©´ ROLLBACKì´ í•„ìš”í•˜ë‹¤.)
+      1) COMMIT   : ìž‘ì—…ì„ ì €ìž¥í•œë‹¤. COMMITì´ ì™„ë£Œëœ ìž‘ì—…ì€ ROLLBACKìœ¼ë¡œ ì·¨ì†Œí•  ìˆ˜ ì—†ë‹¤.
+      2) ROLLBACK : ìž‘ì—…ì„ ì·¨ì†Œí•œë‹¤. COMMIT 'ì´í›„' ìž‘ì—…ì„ ì·¨ì†Œí•œë‹¤.
+    4. ì¢…ë¥˜
+      1) ì‚½ìž… : INSERT INTO VALUES
+      2) ìˆ˜ì • : UPDATE SET WHERE
+      3) ì‚­ì œ : DELETE FROM WHERE
 */
 
--- Âü°í) ÀÚ°ÝÁõ¿¡¼­´Â DMLÀÇ ¹üÁÖ(Á¾·ù)¸¦ INSERT, UPDATE, DELETE, SELECT·Î º¸±âµµ ÇÑ´Ù.
+-- ì°¸ê³ ) ìžê²©ì¦ì—ì„œëŠ” DMLì˜ ë²”ì£¼(ì¢…ë¥˜)ë¥¼ INSERT, UPDATE, DELETE, SELECTë¡œ ë³´ê¸°ë„ í•œë‹¤.
 
--- »èÁ¦´Â »ý¼ºÀÇ ¿ª¼ø
+-- ì‚­ì œëŠ” ìƒì„±ì˜ ì—­ìˆœ
 DROP TABLE EMPLOYEE_TBL;
 DROP TABLE DEPARTMENT_TBL;
 
--- ºÎ¼­ Å×ÀÌºí »ý¼º
+-- ë¶€ì„œ í…Œì´ë¸” ìƒì„±
 CREATE TABLE DEPARTMENT_TBL (
     DEPT_NO   NUMBER            NOT NULL
    ,DEPT_NAME VARCHAR2(15 BYTE) NOT NULL
@@ -26,7 +26,7 @@ CREATE TABLE DEPARTMENT_TBL (
 );
  
  
--- »ç¿ø Å×ÀÌºí »ý¼º
+-- ì‚¬ì› í…Œì´ë¸” ìƒì„±
 CREATE TABLE EMPLOYEE_TBL (
     EMP_NO    NUMBER            NOT NULL
    ,NAME      VARCHAR2(20 BYTE) NOT NULL
@@ -40,38 +40,38 @@ CREATE TABLE EMPLOYEE_TBL (
 );
 
 /*
--- ºÎ¼­¹øÈ£¸¦ »ý¼ºÇÏ´Â ½ÃÄö½º ¸¸µé±â
+-- ë¶€ì„œë²ˆí˜¸ë¥¼ ìƒì„±í•˜ëŠ” ì‹œí€€ìŠ¤ ë§Œë“¤ê¸°
 CREATE SEQUENCE DEPT_SEQ
-    INCREMENT BY 1  -- 1¾¿ Áõ°¡ÇÏ´Â ¹øÈ£¸¦ ¸¸µç´Ù.(µðÆúÆ®)
-    START WITH 1    -- 1ºÎÅÍ ¹øÈ£¸¦ ¸¸µç´Ù.(µðÆúÆ®)
-    NOMAXVALUE      -- ¹øÈ£ÀÇ »óÇÑ¼±ÀÌ ¾ø´Ù.(µðÆúÆ®)
-    NOMINVALUE      -- ¹øÈ£ÀÇ ÇÏÇÑ¼±ÀÌ ¾ø´Ù.(µðÆúÆ®)
-    NOCYCLE         -- ¹øÈ£ ¼øÈ¯ÀÌ ¾ø´Ù.(µðÆúÆ®)
-    CACHE 20        -- 20°³¾¿ ¹øÈ£¸¦ ¹Ì¸® ¸¸µé¾î µÐ´Ù.(µðÆúÆ®)
-    NOORDER         -- ¹øÈ£¸¦ ¼ø¼­´ë·Î »ç¿ëÇÏÁö ¾Ê´Â´Ù.(µðÆúÆ®) - ¹øÈ£¸¦ ¼ø¼­´ë·Î »ç¿ëÇÏ´Â ORDER ¿É¼ÇÀ¸·Î ¹Ù²ã¼­ ½ÃÄö½º¸¦ »ý¼ºÇÑ´Ù.
+    INCREMENT BY 1  -- 1ì”© ì¦ê°€í•˜ëŠ” ë²ˆí˜¸ë¥¼ ë§Œë“ ë‹¤.(ë””í´íŠ¸)
+    START WITH 1    -- 1ë¶€í„° ë²ˆí˜¸ë¥¼ ë§Œë“ ë‹¤.(ë””í´íŠ¸)
+    NOMAXVALUE      -- ë²ˆí˜¸ì˜ ìƒí•œì„ ì´ ì—†ë‹¤.(ë””í´íŠ¸)
+    NOMINVALUE      -- ë²ˆí˜¸ì˜ í•˜í•œì„ ì´ ì—†ë‹¤.(ë””í´íŠ¸)
+    NOCYCLE         -- ë²ˆí˜¸ ìˆœí™˜ì´ ì—†ë‹¤.(ë””í´íŠ¸)
+    CACHE 20        -- 20ê°œì”© ë²ˆí˜¸ë¥¼ ë¯¸ë¦¬ ë§Œë“¤ì–´ ë‘”ë‹¤.(ë””í´íŠ¸)
+    NOORDER         -- ë²ˆí˜¸ë¥¼ ìˆœì„œëŒ€ë¡œ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.(ë””í´íŠ¸) - ë²ˆí˜¸ë¥¼ ìˆœì„œëŒ€ë¡œ ì‚¬ìš©í•˜ëŠ” ORDER ì˜µì…˜ìœ¼ë¡œ ë°”ê¿”ì„œ ì‹œí€€ìŠ¤ë¥¼ ìƒì„±í•œë‹¤.
 ;
 */
--- ½ÃÄö½ºµµ »èÁ¦¸ÕÀú
+-- ì‹œí€€ìŠ¤ë„ ì‚­ì œë¨¼ì €
 DROP SEQUENCE DEPT_SEQ;
--- ½ÃÄö½º »ý¼º
+-- ì‹œí€€ìŠ¤ ìƒì„±
 CREATE SEQUENCE DEPT_SEQ ORDER;
 
-INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '¿µ¾÷ºÎ', '´ë±¸');
-INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ÀÎ»çºÎ', '¼­¿ï');
-INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ÃÑ¹«ºÎ', '´ë±¸');
-INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, '±âÈ¹ºÎ', '¼­¿ï');
+INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ì˜ì—…ë¶€', 'ëŒ€êµ¬');
+INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ì¸ì‚¬ë¶€', 'ì„œìš¸');
+INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ì´ë¬´ë¶€', 'ëŒ€êµ¬');
+INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPT_SEQ.NEXTVAL, 'ê¸°íšë¶€', 'ì„œìš¸');
 
 COMMIT;
 
--- ½ÃÄö½º »èÁ¦¸ÕÀú
+-- ì‹œí€€ìŠ¤ ì‚­ì œë¨¼ì €
 DROP SEQUENCE EMP_SEQ;
--- »ç¿ø¹øÈ£¸¦ »ý¼ºÇÏ´Â ½ÃÄö½º
+-- ì‚¬ì›ë²ˆí˜¸ë¥¼ ìƒì„±í•˜ëŠ” ì‹œí€€ìŠ¤
 CREATE SEQUENCE EMP_SEQ 
     START WITH 1001
     ORDER;
     
-INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '±¸Ã¢¹Î', 1, '°úÀå', 'M', '95-05-01', 5000000); -- ³¯Â¥´Â ÇÏÀÌÇÂ(-) ¶Ç´Â ½½·¡½Ã(/)·Î ±¸ºÐ
-INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, '±è¹Î¼­', 1, '»ç¿ø', 'M', '17-07-01', 2500000); -- ³¯Â¥´Â ÇÏÀÌÇÂ(-) ¶Ç´Â ½½·¡½Ã(/)·Î ±¸ºÐ
-INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'ÀÌÀº¿µ', 2, 'ºÎÀå', 'F', '90/09/01', 5500000); -- ³¯Â¥´Â ÇÏÀÌÇÂ(-) ¶Ç´Â ½½·¡½Ã(/)·Î ±¸ºÐ
-INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'ÇÑ¼ºÀÏ', 2, '°úÀå', 'M', '90/04/01', 5000000); -- ³¯Â¥´Â ÇÏÀÌÇÂ(-) ¶Ç´Â ½½·¡½Ã(/)·Î ±¸ºÐ
+INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'êµ¬ì°½ë¯¼', 1, 'ê³¼ìž¥', 'M', '95-05-01', 5000000); -- ë‚ ì§œëŠ” í•˜ì´í”ˆ(-) ë˜ëŠ” ìŠ¬ëž˜ì‹œ(/)ë¡œ êµ¬ë¶„
+INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'ê¹€ë¯¼ì„œ', 1, 'ì‚¬ì›', 'M', '17-07-01', 2500000); -- ë‚ ì§œëŠ” í•˜ì´í”ˆ(-) ë˜ëŠ” ìŠ¬ëž˜ì‹œ(/)ë¡œ êµ¬ë¶„
+INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'ì´ì€ì˜', 2, 'ë¶€ìž¥', 'F', '90/09/01', 5500000); -- ë‚ ì§œëŠ” í•˜ì´í”ˆ(-) ë˜ëŠ” ìŠ¬ëž˜ì‹œ(/)ë¡œ êµ¬ë¶„
+INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY) VALUES(EMP_SEQ.NEXTVAL, 'í•œì„±ì¼', 2, 'ê³¼ìž¥', 'M', '90/04/01', 5000000); -- ë‚ ì§œëŠ” í•˜ì´í”ˆ(-) ë˜ëŠ” ìŠ¬ëž˜ì‹œ(/)ë¡œ êµ¬ë¶„
 COMMIT;

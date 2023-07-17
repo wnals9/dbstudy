@@ -1,41 +1,41 @@
 /*
-    SELECT ¹®ÀÇ ½ÇÇà ¼ø¼­
+    SELECT ë¬¸ì˜ ì‹¤í–‰ ìˆœì„œ
     
-    SELECT Ä®·³       5
-      FROM Å×ÀÌºí     1
-     WHERE Á¶°Ç       2
-     GROUP BY ±×·ì    3
-    HAVING ±×·ìÁ¶°Ç   4
-     ORDER BY Á¤·Ä    6
+    SELECT ì¹¼ëŸ¼       5
+      FROM í…Œì´ë¸”     1
+     WHERE ì¡°ê±´       2
+     GROUP BY ê·¸ë£¹    3
+    HAVING ê·¸ë£¹ì¡°ê±´   4
+     ORDER BY ì •ë ¬    6
 */
 
--- »ç¿ø Å×ÀÌºí¿¡¼­ ºÎ¼­º° »ç¿ø¼ö¸¦ Á¶È¸ÇÏ½Ã¿À.
--- °¡´É
+-- ì‚¬ì› í…Œì´ë¸”ì—ì„œ ë¶€ì„œë³„ ì‚¬ì›ìˆ˜ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.
+-- ê°€ëŠ¥
 SELECT DEPARTMENT_ID, COUNT(*)  -- 3
   FROM EMPLOYEES                -- 1
  GROUP BY DEPARTMENT_ID;        -- 2
  
--- ºÒ°¡´É
+-- ë¶ˆê°€ëŠ¥
 SELECT DEPARTMENT_ID AS DEPT_ID, COUNT(*)  -- 3
   FROM EMPLOYEES                           -- 1
- GROUP BY DEPT_ID;                         -- 2 (GROUP BY ÀýÀÌ ½ÇÇàµÇ´Â ¼ø¼­¿¡¼­´Â DEPT_ID°¡ Á¸ÀçÇÏÁö ¾Ê±â ¶§¹®¿¡ ¿À·ù°¡ ¹ß»ý)
+ GROUP BY DEPT_ID;                         -- 2 (GROUP BY ì ˆì´ ì‹¤í–‰ë˜ëŠ” ìˆœì„œì—ì„œëŠ” DEPT_IDê°€ ì¡´ìž¬í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ê°€ ë°œìƒ)
 
 
--- »ç¿ø Å×ÀÌºí¿¡¼­ ºÎ¼­º° ¿¬ºÀ Æò±Õ°ú »ç¿ø¼ö¸¦ Á¶È¸ÇÏ½Ã¿À. ºÎ¼­º° »ç¿ø¼ö°¡ 2¸í ÀÌ»óÀÎ ºÎ¼­¸¸ Á¶È¸ÇÏ½Ã¿À.
--- ºÒ°¡´É
-SELECT DEPARTMENT_ID         AS ºÎ¼­¹øÈ£
-     , ROUND(AVG(SALARY), 2) AS Æò±Õ¿¬ºÀ
-     , COUNT(*)              AS »ç¿ø¼ö    -- 4
+-- ì‚¬ì› í…Œì´ë¸”ì—ì„œ ë¶€ì„œë³„ ì—°ë´‰ í‰ê· ê³¼ ì‚¬ì›ìˆ˜ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤. ë¶€ì„œë³„ ì‚¬ì›ìˆ˜ê°€ 2ëª… ì´ìƒì¸ ë¶€ì„œë§Œ ì¡°íšŒí•˜ì‹œì˜¤.
+-- ë¶ˆê°€ëŠ¥
+SELECT DEPARTMENT_ID         AS ë¶€ì„œë²ˆí˜¸
+     , ROUND(AVG(SALARY), 2) AS í‰ê· ì—°ë´‰
+     , COUNT(*)              AS ì‚¬ì›ìˆ˜    -- 4
   FROM EMPLOYEES                          -- 1
  GROUP BY DEPARTMENT_ID                   -- 2
-HAVING »ç¿ø¼ö >= 2                        -- 3 (HAVING ÀýÀÌ ½ÇÇàµÇ´Â ¼ø¼­¿¡¼­´Â "»ç¿ø¼ö"°¡ Á¸ÀçÇÏÁö ¾Ê±â ¶§¹®¿¡ ¿À·ù°¡ ¹ß»ý)
+HAVING ì‚¬ì›ìˆ˜ >= 2                        -- 3 (HAVING ì ˆì´ ì‹¤í–‰ë˜ëŠ” ìˆœì„œì—ì„œëŠ” "ì‚¬ì›ìˆ˜"ê°€ ì¡´ìž¬í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ê°€ ë°œìƒ)
  ORDER BY DEPARTMENT_ID;                  -- 5
 
--- °¡´É
-SELECT DEPARTMENT_ID         AS ºÎ¼­¹øÈ£
-     , ROUND(AVG(SALARY), 2) AS Æò±Õ¿¬ºÀ
-     , COUNT(*)              AS »ç¿ø¼ö    -- 4
+-- ê°€ëŠ¥
+SELECT DEPARTMENT_ID         AS ë¶€ì„œë²ˆí˜¸
+     , ROUND(AVG(SALARY), 2) AS í‰ê· ì—°ë´‰
+     , COUNT(*)              AS ì‚¬ì›ìˆ˜    -- 4
   FROM EMPLOYEES                          -- 1
  GROUP BY DEPARTMENT_ID                   -- 2
 HAVING COUNT(*) >= 2                      -- 3
- ORDER BY ºÎ¼­¹øÈ£;                       -- 5 (ORDER BY ÀýÀÌ ½ÇÇàµÇ±â Á÷ÀüÀÎ SELECT Àý¿¡¼­ "ºÎ¼­¹øÈ£" º°¸íÀÌ ÁöÁ¤µÇ¾ú±â ¶§¹®¿¡ »ç¿ë °¡´É)
+ ORDER BY ë¶€ì„œë²ˆí˜¸;                       -- 5 (ORDER BY ì ˆì´ ì‹¤í–‰ë˜ê¸° ì§ì „ì¸ SELECT ì ˆì—ì„œ "ë¶€ì„œë²ˆí˜¸" ë³„ëª…ì´ ì§€ì •ë˜ì—ˆê¸° ë•Œë¬¸ì— ì‚¬ìš© ê°€ëŠ¥)

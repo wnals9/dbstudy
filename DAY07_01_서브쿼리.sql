@@ -1,32 +1,32 @@
 /*
-    ¼­ºêÄõ¸®(sub qeury_
-    1. ¸ÞÀÎÄõ¸®¿¡ Æ÷ÇÔµÇ´Â ÇÏÀ§Äõ¸®¸¦ ¼­ºê Äõ¸®¶ó°í ÇÑ´Ù.
-    2. ¼­ºêÄõ¸®¸¦ ¸ÕÀú ½ÇÇàÇØ¼­ ±× °á°ú¸¦ ¸ÞÀÎÄõ¸®¿¡ Àü´ÞÇÑ´Ù.
-    3. Á¾·ù
-        1) SELECT Àý : ½ºÄ®¶ó ¼­ºêÄõ¸®
-        2)   FROM Àý : ÀÎ¶óÀÎ ºä(INLINE VIEW)
-        3)  WHERE Àý : ´ÜÀÏ Çà ¼­ºêÄõ¸® (°á°ú°¡ 1°³)
-                       ´ÙÁß Çà ¼­ºêÄõ¸® (°á°ú°¡ N°³) 
+    ì„œë¸Œì¿¼ë¦¬(sub qeury_
+    1. ë©”ì¸ì¿¼ë¦¬ì— í¬í•¨ë˜ëŠ” í•˜ìœ„ì¿¼ë¦¬ë¥¼ ì„œë¸Œ ì¿¼ë¦¬ë¼ê³  í•œë‹¤.
+    2. ì„œë¸Œì¿¼ë¦¬ë¥¼ ë¨¼ì € ì‹¤í–‰í•´ì„œ ê·¸ ê²°ê³¼ë¥¼ ë©”ì¸ì¿¼ë¦¬ì— ì „ë‹¬í•œë‹¤.
+    3. ì¢…ë¥˜
+        1) SELECT ì ˆ : ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬
+        2)   FROM ì ˆ : ì¸ë¼ì¸ ë·°(INLINE VIEW)
+        3)  WHERE ì ˆ : ë‹¨ì¼ í–‰ ì„œë¸Œì¿¼ë¦¬ (ê²°ê³¼ê°€ 1ê°œ)
+                       ë‹¤ì¤‘ í–‰ ì„œë¸Œì¿¼ë¦¬ (ê²°ê³¼ê°€ Nê°œ) 
 */
 
 /*
-    ´ÜÀÏ Çà ¼­ºêÄõ¸®(single row sub query)
-    1. °á°ú°¡ 1ÇàÀÌ´Ù. (1°³ÀÌ´Ù.)
-    2. ´ÜÀÏ Çà ¼­ºêÄõ¸®ÀÎ °æ¿ì
-        1) WHERE Àý¿¡¼­ »ç¿ëÇÑ Ä®·³ÀÌ PK ¶Ç´Â UNIQUE Ä®·³ÀÎ °æ¿ì
-        2) Åë°è ÇÔ¼ö¸¦ »ç¿ëÇÑ °æ¿ì 
-    3. ´ÜÀÏ Çà ¼­ºêÄõ¸® ¿¬»êÀÚ
+    ë‹¨ì¼ í–‰ ì„œë¸Œì¿¼ë¦¬(single row sub query)
+    1. ê²°ê³¼ê°€ 1í–‰ì´ë‹¤. (1ê°œì´ë‹¤.)
+    2. ë‹¨ì¼ í–‰ ì„œë¸Œì¿¼ë¦¬ì¸ ê²½ìš°
+        1) WHERE ì ˆì—ì„œ ì‚¬ìš©í•œ ì¹¼ëŸ¼ì´ PK ë˜ëŠ” UNIQUE ì¹¼ëŸ¼ì¸ ê²½ìš°
+        2) í†µê³„ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œ ê²½ìš° 
+    3. ë‹¨ì¼ í–‰ ì„œë¸Œì¿¼ë¦¬ ì—°ì‚°ìž
         =, !=, >, >=, <, <=
     
-    ´ÙÁß Çà ¼­ºêÄõ¸®(multiple row sub query)
-    1. °á°ú°¡ NÇàÀÌ´Ù.
-    2. ´ÙÁß Çà ¼­ºêÄõ¸® ¿¬»êÀÚ
-        IN, ANY, ALL µî
+    ë‹¤ì¤‘ í–‰ ì„œë¸Œì¿¼ë¦¬(multiple row sub query)
+    1. ê²°ê³¼ê°€ Ní–‰ì´ë‹¤.
+    2. ë‹¤ì¤‘ í–‰ ì„œë¸Œì¿¼ë¦¬ ì—°ì‚°ìž
+        IN, ANY, ALL ë“±
 */
 
-/* WHERE ÀýÀÇ ¼­ºêÄõ¸® */
+/* WHERE ì ˆì˜ ì„œë¸Œì¿¼ë¦¬ */
 
--- 1. »ç¿ø¹øÈ£°¡ 101ÀÎ »ç¿øÀÇ Á÷¾÷°ú µ¿ÀÏÇÑ Á÷¾÷À» °¡Áø »ç¿øÀ» Á¶È¸ÇÏ½Ã¿À
+-- 1. ì‚¬ì›ë²ˆí˜¸ê°€ 101ì¸ ì‚¬ì›ì˜ ì§ì—…ê³¼ ë™ì¼í•œ ì§ì—…ì„ ê°€ì§„ ì‚¬ì›ì„ ì¡°íšŒí•˜ì‹œì˜¤
 SELECT *
   FROM EMPLOYEES
  WHERE JOB_ID = (SELECT JOB_ID 
@@ -34,15 +34,15 @@ SELECT *
                   WHERE EMPLOYEE_ID = 101);
             
                   
--- 2. ºÎ¼­¸íÀÌ 'IT'ÀÎ ºÎ¼­¿¡ ±Ù¹«ÇÏ´Â »ç¿ø Á¶È¸ÇÏ±â
+-- 2. ë¶€ì„œëª…ì´ 'IT'ì¸ ë¶€ì„œì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT *
   FROM EMPLOYEES
  WHERE DEPARTMENT_ID IN(SELECT DEPARTMENT_ID
                           FROM DEPARTMENTS
-                         WHERE DEPARTMENT_NAME = 'IT'); -- ¼­ºêÄõ¸®ÀÇ DEPARTMENT_NAME Ä®·³Àº Áßº¹ÀÌ ÀÖÀ» ¼ö ÀÖÀ¸¹Ç·Î ´ÙÁß Çà ¼­ºêÄõ¸®·Î Ã³¸®ÇÑ´Ù.
+                         WHERE DEPARTMENT_NAME = 'IT'); -- ì„œë¸Œì¿¼ë¦¬ì˜ DEPARTMENT_NAME ì¹¼ëŸ¼ì€ ì¤‘ë³µì´ ìžˆì„ ìˆ˜ ìžˆìœ¼ë¯€ë¡œ ë‹¤ì¤‘ í–‰ ì„œë¸Œì¿¼ë¦¬ë¡œ ì²˜ë¦¬í•œë‹¤.
 
 
--- 3. 'Seattle'¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿ø Á¶È¸ÇÏ±â
+-- 3. 'Seattle'ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT *
   FROM EMPLOYEES
  WHERE DEPARTMENT_ID IN(SELECT DEPARTMENT_ID 
@@ -51,52 +51,52 @@ SELECT *
                                                 FROM LOCATIONS 
                                                WHERE CITY = 'Seattle'));
 
--- 4. ¿¬ºÀ °¡Àå ³ôÀº »ç¿ø Á¶È¸ÇÏ±â
+-- 4. ì—°ë´‰ ê°€ìž¥ ë†’ì€ ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT *
   FROM EMPLOYEES
  WHERE SALARY = (SELECT MAX(SALARY)
                    FROM EMPLOYEES);
 
--- 5. °¡Àå ¸ÕÀú ÀÔ»çÇÑ Á¶È¸ÇÏ±â
+-- 5. ê°€ìž¥ ë¨¼ì € ìž…ì‚¬í•œ ì¡°íšŒí•˜ê¸°
 SELECT *
   FROM EMPLOYEES
  WHERE HIRE_DATE = (SELECT MIN(HIRE_DATE)
                       FROM EMPLOYEES);
 
--- 6. Æò±Õ ¿¬ºÀ ÀÌ»óÀ» ¹Þ´Â »ç¿ø Á¶È¸ÇÏ±â
+-- 6. í‰ê·  ì—°ë´‰ ì´ìƒì„ ë°›ëŠ” ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT * 
   FROM EMPLOYEES
  WHERE SALARY >= (SELECT AVG(SALARY)
                     FROM EMPLOYEES);
                     
-/* FROM ÀýÀÇ ¼­ºêÄõ¸® */
+/* FROM ì ˆì˜ ì„œë¸Œì¿¼ë¦¬ */
 
--- 1. ¿¬ºÀÀÌ 3¹øÂ°·Î ³ôÀº »ç¿ø Á¶È¸ÇÏ±â
---    1) ³ôÀº ¿¬ºÀ ¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
---    2) Á¤·Ä °á°ú¿¡ Çà ¹øÈ£¸¦ ºÙÀÎ´Ù.
---    3) Çà ¹øÈ£ 3À» °¡Á®¿Â´Ù.
+-- 1. ì—°ë´‰ì´ 3ë²ˆì§¸ë¡œ ë†’ì€ ì‚¬ì› ì¡°íšŒí•˜ê¸°
+--    1) ë†’ì€ ì—°ë´‰ ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
+--    2) ì •ë ¬ ê²°ê³¼ì— í–‰ ë²ˆí˜¸ë¥¼ ë¶™ì¸ë‹¤.
+--    3) í–‰ ë²ˆí˜¸ 3ì„ ê°€ì ¸ì˜¨ë‹¤.
 
-SELECT Çà¹øÈ£, EMPLOYEE_ID
-  FROM (SELECT ROW_NUMBER() OVER(ORDER BY SALARY DESC) AS Çà¹øÈ£, EMPLOYEE_ID
+SELECT í–‰ë²ˆí˜¸, EMPLOYEE_ID
+  FROM (SELECT ROW_NUMBER() OVER(ORDER BY SALARY DESC) AS í–‰ë²ˆí˜¸, EMPLOYEE_ID
           FROM EMPLOYEES)
- WHERE Çà¹øÈ£ = 3;
+ WHERE í–‰ë²ˆí˜¸ = 3;
  
--- 2. ¿¬ºÀ 11~20¹øÂ° »ç¿ø Á¶È¸ÇÏ±â
+-- 2. ì—°ë´‰ 11~20ë²ˆì§¸ ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT RN, EMPLOYEE_ID
   FROM (SELECT ROW_NUMBER() OVER(ORDER BY SALARY DESC) AS RN, EMPLOYEE_ID
           FROM EMPLOYEES)
  WHERE RN BETWEEN 11 AND 20;
  
--- 3. 21 ~ 30¹øÂ°·Î ÀÔ»çÇÑ »ç¿ø Á¶È¸ÇÏ±â
+-- 3. 21 ~ 30ë²ˆì§¸ë¡œ ìž…ì‚¬í•œ ì‚¬ì› ì¡°íšŒí•˜ê¸°
 SELECT EMPLOYEE_ID
   FROM (SELECT ROW_NUMBER() OVER(ORDER BY HIRE_DATE) AS RN, EMPLOYEE_ID
           FROM EMPLOYEES)
  WHERE RN BETWEEN 21 AND 30;
  
  
-/* SELECT ÀýÀÇ ¼­ºêÄõ¸® */
+/* SELECT ì ˆì˜ ì„œë¸Œì¿¼ë¦¬ */
 
--- 1.ºÎ¼­¹øÈ£°¡ 50ÀÎ ºÎ¼­¿¡ ±Ù¹«ÇÏ´Â »ç¿ø¹øÈ£, »ç¿ø¸í, ºÎ¼­¸í Á¶È¸ÇÏ±â
+-- 1.ë¶€ì„œë²ˆí˜¸ê°€ 50ì¸ ë¶€ì„œì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ëª…, ë¶€ì„œëª… ì¡°íšŒí•˜ê¸°
 SELECT EMPLOYEE_ID
      , FIRST_NAME
      , LAST_NAME
